@@ -30,8 +30,9 @@ Schemas.Accidents = new SimpleSchema({
     max: 1000
   },
   date: {
-    type: Date,
-    label: 'Date'
+    type: String,
+    label: 'Date',
+    max: 1000
   },
   location: {
     type: String,
@@ -91,3 +92,11 @@ if (Meteor.isServer) {
     return user;
   });
 }
+
+
+//================================Routes=====================================
+
+Router.route('/uploadjson',{
+  name: 'upload',
+  template: 'uploadjson'
+});
