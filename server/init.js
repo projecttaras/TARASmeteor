@@ -1,4 +1,5 @@
 Meteor.startup(function () {
+  // $.getScript('https://maps.googleapis.com/maps/api/js', function(){});
   console.log("Server init started........");
   UploadServer.init({
     tmpDir: process.env.PWD + '/.uploads/tmp',
