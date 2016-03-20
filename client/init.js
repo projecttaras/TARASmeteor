@@ -29,13 +29,13 @@ Template.map.helpers({
 });
 
 setMarker = function (initialLocation,location, map){
-          
+
          var marker = new google.maps.Marker({
             position: initialLocation,
             title: location,
             map: map,
             draggable: false,
-            icon: 'https://upload.wikimedia.org/wikipedia/commons/3/31/Red-dot-5px.png',
+            icon: 'http://www.fiatusa.com/assets/images/2015/vehicles/500e/marker-22x31.png',
             animation: google.maps.Animation.DROP
         });
 
@@ -49,7 +49,7 @@ setMarker = function (initialLocation,location, map){
 
 
 
-Template.map.onCreated(function() {  
+Template.map.onCreated(function() {
   GoogleMaps.ready('map', function(map) {
     var latLng = Geolocation.latLng();
 
@@ -70,8 +70,6 @@ Accidents.find().observe({
     console.log("Added a new accident");
     GoogleMaps.ready('map', function(map) {
     var latLng = Geolocation.latLng();
-
-    setMarker(new google.maps.LatLng(latLng.lat, latLng.lng), "Your location", map.instance);
       // console.log(obj.location);
     setMarker(new google.maps.LatLng(accident.lat, accident.longt), accident.location, map.instance);
   });

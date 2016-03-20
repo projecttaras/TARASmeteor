@@ -35,7 +35,7 @@ Meteor.startup(function () {
 
 Accounts.onCreateUser(function (options, user) {
     user.profile = {};
-    // create a empty array to avoid the Exception while invoking method 'adminCheckAdmin' 
+    // create a empty array to avoid the Exception while invoking method 'adminCheckAdmin'
     user.emails = [];
     console.log("Added extra variables..........");
     return user;
