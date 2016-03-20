@@ -63,3 +63,17 @@ Template.map.onCreated(function() {
 
   });
 });
+
+
+Accidents.find().observe({
+  added: function(accident){
+    console.log("Added a new accident");
+    GoogleMaps.ready('map', function(map) {
+    var latLng = Geolocation.latLng();
+
+    setMarker(new google.maps.LatLng(latLng.lat, latLng.lng), "Your location", map.instance);
+      // console.log(obj.location);
+    setMarker(new google.maps.LatLng(accident.lat, accident.longt), accident.location, map.instance);
+  });
+  }
+})
