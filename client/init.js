@@ -64,6 +64,12 @@ Template.map.onCreated(function() {
   });
 });
 
+Template.home.helpers({
+  accidents: function(){
+    return Accidents.find({});
+  }
+});
+
 
 Accidents.find().observe({
   added: function(accident){

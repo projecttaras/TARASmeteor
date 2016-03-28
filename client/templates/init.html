@@ -42,4 +42,7 @@
 
 <template name="home">
 	<h1>Welcome to the TARAS application</h1>
+  {{#each accidents}}
+    <li>{{location}}</li>
+  {{/each}}
 </template>
