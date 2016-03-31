@@ -41,8 +41,31 @@
 </template>
 
 <template name="home">
-	<h1>Welcome to the TARAS application</h1>
-  {{#each accidents}}
-    <li>{{ getNearestPolice }}</li>
-  {{/each}}
+	<h1>ACCIDENT DATA</h1>
+<table class="table">
+    <thead>
+      <tr>
+      <td>Deaths</td>
+      <td>Longitude</td>    
+      <td>Latitude</td>
+      <td>Date</td>
+      <td>Location</td>
+      <td>Vehicle</td>
+      <td>Injuries</td>
+  </tr>
+    </thead>
+    <tbody>
+      {{#each accidents}}
+          <tr>
+            <td>{{ deaths }}</td>
+            <td>{{ longt }}</td>    
+            <td>{{ lat }}</td>
+            <td>{{ date }}</td>
+            <td>{{ location }}</td>
+            <td>{{ vehicle }}</td>
+            <td>{{ injuries }}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </template>
