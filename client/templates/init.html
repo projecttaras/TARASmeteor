@@ -43,6 +43,6 @@
 <template name="home">
 	<h1>Welcome to the TARAS application</h1>
   {{#each accidents}}
-    <li>{{location}}</li>
+    <li>{{ getNearestPolice }}</li>
   {{/each}}
 </template>
