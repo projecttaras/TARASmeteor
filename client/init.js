@@ -122,6 +122,7 @@ Template.map.onCreated(function() {
       });
     // changeGradient();
     changeRadius();
+    changeOpacity();
 
   });
 });
@@ -173,7 +174,7 @@ Accidents.find().observe({
     GoogleMaps.ready('map', function(map) {
     var latLng = Geolocation.latLng();
       // console.log(obj.location);
-    setMarker(new google.maps.LatLng(accident.lat, accident.longt), accident.location, map.instance);
+    // setMarker(new google.maps.LatLng(accident.lat, accident.longt), accident.location, map.instance);
   });
   }
 })
