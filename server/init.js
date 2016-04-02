@@ -31,12 +31,53 @@ Meteor.startup(function () {
 	    return null; 
 	}
   });
+
+  Meteor.methods({
+    addnewuser: function(emailaddress,password,roles,userinfo){
+      var user=Accounts.createUser({
+        'username': emailaddress,
+        'email': emailaddress,
+        'password': password,
+        'roles': roles,
+        'userinfo':userinfo,
+    },console.log("Done"));
+    },
+  })
 });
 
 Accounts.onCreateUser(function (options, user) {
     user.profile = {};
     // create a empty array to avoid the Exception while invoking method 'adminCheckAdmin'
     user.emails = [];
+    if(options.roles)
+      user.roles = options.roles;
+    if(Meteor.users.find({roles:'admin'}).count() == 0)
+    {
+      console.log("Creating admin user");
+      user.roles= ['admin']
+    }
+    if(options.userinfo)
+    {
+      console.log("Creating new hospital or police station");
+      if(options.userinfo.hospitalmember)
+      {
+        Hospitals.insert({
+          'userId':user._id,
+          'address':options.userinfo.address,
+          'longt': options.userinfo.latlongarr[1],
+          'lat': options.userinfo.latlongarr[0],
+        });
+      }
+      else if(options.userinfo.policemember)
+      {
+        PoliceStation.insert({
+          'userId':user._id,
+          'address':options.userinfo.address,
+          'longt': options.userinfo.latlongarr[1],
+          'lat': options.userinfo.latlongarr[0],
+        });
+      }
+    }
     console.log("Added extra variables..........");
     return user;
   });

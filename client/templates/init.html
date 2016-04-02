@@ -1,6 +1,5 @@
 <template name="main">
 	{{> navigation }}
-	{{> loginButtons}}
 	{{>yield}}
 </template>
 
@@ -28,6 +27,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
         <li><a href="{{pathFor route='map'}}">Map</a></li>
+        {{> loginButtons}}
       </ul>
       {{#if isInRole 'admin' }}
       <ul class="nav navbar-nav navbar-right">

@@ -1,3 +1,4 @@
+
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
   });
@@ -71,9 +72,43 @@ Template.home.helpers({
 });
 
 
+Template.adduser.events({
+  'click #submitform'(event) {
+    event.preventDefault();
+    var emailaddress=$('#emailaddress').val();
+    var password=$('#Password').val();
+    var confirmpassword=$('#ConfirmPassword').val();
+    var hospitalmember=$('#Hospital').is(':checked');
+    var policemember=$('#PoliceStation').is(':checked');
+    var roles=[];
+    if(hospitalmember)
+      roles.push("Hospital");
+    else if(policemember)
+      roles.push("Police");
+    var address=$('#address').val();
+    var latlong=$('#latlongt').val();
+    var latlongarr=latlong.trim().split(",");
+    var userinfo={'address':address,'latlongarr':latlongarr,'hospitalmember':hospitalmember,'policemember': policemember};
+    console.log("========Values from form===============");
+    console.log(emailaddress+"|"+password+"|"+hospitalmember+"|"+address);
+    Meteor.call('addnewuser',emailaddress,password,roles,userinfo,function(){
+      console.log("Sending data to user..........");
+    });
+  },
+});
+
+
+Template.adduser.helpers({
+  UserRole: function(){
+    if(Meteor.user())
+      return Meteor.user().roles;
+    else
+      return "No role assigned";
+  }
+})
+
 Accidents.find().observe({
   added: function(accident){
-    console.log("Added a new accident");
     GoogleMaps.ready('map', function(map) {
     var latLng = Geolocation.latLng();
       // console.log(obj.location);
