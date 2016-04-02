@@ -1,3 +1,4 @@
+
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
   });
@@ -67,13 +68,13 @@ Template.map.helpers({
 });
 
 setMarker = function (initialLocation,location, map){
-          
+
          var marker = new google.maps.Marker({
             position: initialLocation,
             title: location,
             map: map,
             draggable: false,
-            icon: 'https://upload.wikimedia.org/wikipedia/commons/3/31/Red-dot-5px.png',
+            icon: 'http://www.fiatusa.com/assets/images/2015/vehicles/500e/marker-22x31.png',
             animation: google.maps.Animation.DROP
         });
 
@@ -99,7 +100,7 @@ function getPoints() {
     ]
 }
 
-Template.map.onCreated(function() {  
+Template.map.onCreated(function() {
   GoogleMaps.ready('map', function(map) {
     var latLng = Geolocation.latLng();
     
@@ -124,3 +125,55 @@ Template.map.onCreated(function() {
 
   });
 });
+
+Template.home.helpers({
+  accidents: function(){
+    return Accidents.find({});
+  }
+});
+
+
+Template.adduser.events({
+  'click #submitform'(event) {
+    event.preventDefault();
+    var emailaddress=$('#emailaddress').val();
+    var password=$('#Password').val();
+    var confirmpassword=$('#ConfirmPassword').val();
+    var hospitalmember=$('#Hospital').is(':checked');
+    var policemember=$('#PoliceStation').is(':checked');
+    var roles=[];
+    if(hospitalmember)
+      roles.push("Hospital");
+    else if(policemember)
+      roles.push("Police");
+    var address=$('#address').val();
+    var latlong=$('#latlongt').val();
+    var latlongarr=latlong.trim().split(",");
+    var userinfo={'address':address,'latlongarr':latlongarr,'hospitalmember':hospitalmember,'policemember': policemember};
+    console.log("========Values from form===============");
+    console.log(emailaddress+"|"+password+"|"+hospitalmember+"|"+address);
+    Meteor.call('addnewuser',emailaddress,password,roles,userinfo,function(){
+      console.log("Sending data to user..........");
+    });
+  },
+});
+
+
+Template.adduser.helpers({
+  UserRole: function(){
+    if(Meteor.user())
+      return Meteor.user().roles;
+    else
+      return "No role assigned";
+  }
+})
+
+Accidents.find().observe({
+  added: function(accident){
+    GoogleMaps.ready('map', function(map) {
+    var latLng = Geolocation.latLng();
+      // console.log(obj.location);
+    setMarker(new google.maps.LatLng(accident.lat, accident.longt), accident.location, map.instance);
+  });
+  }
+})
