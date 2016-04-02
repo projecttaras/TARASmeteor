@@ -42,6 +42,12 @@ Meteor.startup(function () {
         'userinfo':userinfo,
     },console.log("Done"));
     },
+    getaddress: function(lat,longt){
+      this.unblock();
+      var url="http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+longt;
+      console.log("Url to call....:"+url);
+      return Meteor.http.call("GET",url);
+    }
   })
 });
 
