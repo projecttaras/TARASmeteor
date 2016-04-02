@@ -230,9 +230,17 @@ Template.login.events({
     event.preventDefault();
     var emailaddress=$('#emailaddress').val();
     var password=$('#Password').val();
-    console.log(emailaddress+password);
-    Meteor.loginWithPassword(emailaddress,password,function(err){console.log(err);});
-    // Router.go('home');
+    // console.log(emailaddress+password);
+    Meteor.loginWithPassword({'username':emailaddress},password,function(err){
+      if(err)
+      {
+        console.log(err);
+      }
+      else
+      {
+        Router.go('home');
+      }
+    });
   },
 });
 
