@@ -4,6 +4,8 @@
   });
 
 
+
+//Map helper functions
 Template.map.onRendered(function(){
   GoogleMaps.load();
 });
@@ -65,6 +67,8 @@ Template.map.onCreated(function() {
   });
 });
 
+
+//Home template
 Template.home.helpers({
   accidents: function(){
     return Accidents.find({});
@@ -72,6 +76,7 @@ Template.home.helpers({
 });
 
 
+//Add user template
 Template.adduser.events({
   'click #submitform'(event) {
     event.preventDefault();
@@ -107,6 +112,37 @@ Template.adduser.helpers({
   }
 })
 
+
+//Login and Register Templates
+Template.login.events({
+  'click #submitform'(event) {
+    event.preventDefault();
+    var emailaddress=$('#emailaddress').val();
+    var password=$('#Password').val();
+    console.log(emailaddress+password);
+    Meteor.loginWithPassword(emailaddress,password,function(err){console.log(err);});
+    // Router.go('home');
+  },
+});
+
+Template.register.events({
+  'click #submitform'(event) {
+    event.preventDefault();
+    var emailaddress=$('#emailaddress').val();
+    var password=$('#Password').val();
+    var confirmpassword=$('#ConfirmPassword').val();
+    Accounts.createUser({
+            'username': emailaddress,
+            'email': emailaddress,
+            'password': password,
+        });
+    Router.go('home');
+  },
+});
+
+
+
+//Accidents maps functions
 Accidents.find().observe({
   added: function(accident){
     GoogleMaps.ready('map', function(map) {
