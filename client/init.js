@@ -100,19 +100,68 @@ function getPoints() {
     ]
 }
 
+
+function deg2rad(angle) {
+  return angle * .017453292519943295;
+}
+
+function getDistance( latitude1, longitude1, latitude2, longitude2 ) {  
+    var earth_radius = 6371;
+
+    var dLat = deg2rad(latitude2 - latitude1 );  
+    var dLon = deg2rad(longitude2 - longitude1 );  
+
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(latitude1)) * Math.cos(deg2rad(latitude2)) * Math.sin(dLon/2) * Math.sin(dLon/2);  
+    var c = 2 * Math.asin(Math.sqrt(a));  
+    var d = earth_radius * c;  
+
+    return d;  
+}
+
+
+function get_number_of_accidents_in_radius(loc, accidents){
+  var threshold = 30;
+
+  var rad = 1000;
+  var lat = loc.latLng.lat();
+  var lng = loc.latLng.lng();
+  console.log(loc.latLng.lat()+ "   "+loc.latLng.lng());
+  var count = 0;
+  accidents.forEach(function(accident){
+    var dist = getDistance(lat, lng, accident.lat, accident.longt);
+    if(dist <= 0.2){
+      count = count +1;
+    }
+
+
+  })
+  if (count > threshold){
+    console.log("SLOW DOWN BITCH");
+  }
+
+}
+
 Template.map.onCreated(function() {
   GoogleMaps.ready('map', function(map) {
     var latLng = Geolocation.latLng();
-    
-    setMarker(new google.maps.LatLng(latLng.lat, latLng.lng), "Your location", map.instance);
     accidents = Accidents.find({});
+
+    map.instance.addListener('click', function(e) {
+      get_number_of_accidents_in_radius(e, accidents);
+    });
+    setMarker(new google.maps.LatLng(latLng.lat, latLng.lng), "Your location", map.instance);
+    
 
     var accident_lat_lon_list = [];
 
     accidents.forEach(function(obj){
       // console.log(obj.location);
       // setMarker(new google.maps.LatLng(obj.lat, obj.longt), obj.location, map.instance);
-      accident_lat_lon_list.push(new google.maps.LatLng(obj.lat, obj.longt));
+      // console.log(obj.deaths);
+      // accident_lat_lon_list.push(new google.maps.LatLng(obj.lat, obj.longt));
+      for (i = 0; i < obj.deaths+obj.injuries+1 ; i++) { 
+          accident_lat_lon_list.push(new google.maps.LatLng(obj.lat, obj.longt));
+      }
     })
 
     // console.log(accident_lat_lon_list);
