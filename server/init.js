@@ -67,21 +67,23 @@ Accounts.onCreateUser(function (options, user) {
       console.log("Creating new hospital or police station");
       if(options.userinfo.hospitalmember)
       {
-        Hospitals.insert({
+        hospital=Hospitals.insert({
           'userId':user._id,
           'address':options.userinfo.address,
           'longt': options.userinfo.latlongarr[1],
           'lat': options.userinfo.latlongarr[0],
         });
+        user.orgId=hospital;
       }
       else if(options.userinfo.policemember)
       {
-        PoliceStation.insert({
+        police=PoliceStation.insert({
           'userId':user._id,
           'address':options.userinfo.address,
           'longt': options.userinfo.latlongarr[1],
           'lat': options.userinfo.latlongarr[0],
         });
+        user.orgId=police;
       }
     }
     console.log("Added extra variables..........");
