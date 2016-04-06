@@ -271,3 +271,11 @@ Accidents.find().observe({
   });
   }
 })
+
+
+Template.homepage.helpers({
+  template: function () {
+    route = Router.current();
+    return route? route.lookupTemplate() : 'home';
+  },
+});
