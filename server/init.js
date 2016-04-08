@@ -47,7 +47,20 @@ Meteor.startup(function () {
       var url="http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+longt;
       console.log("Url to call....:"+url);
       return Meteor.http.call("GET",url);
-    }
+    },
+    getAccidentMap: function(userId){
+      user=Meteor.users.findOne({_id:userId});
+      orgId=user.orgId;
+      console.log(user);
+      if(user.roles[0] == 'Hospital')
+      {
+        acc=AccidentMap.find({'HospitalId':user.orgId});
+        console.log(acc);
+        return acc;
+      }
+      else
+        return AccidentMap.find({'PoliceId':user.orgId});
+      }
   })
 });
 

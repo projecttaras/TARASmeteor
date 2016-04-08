@@ -1,0 +1,26 @@
+<template name="portal">
+<h1> HOSPITAL PORTAL </h1>
+	<table class="table">
+    <thead>
+      <tr>
+      <td>UserID</td>
+      <td>HospitalID</td>    
+      <td>AccidentID</td>
+      <td>PoliceID</td>
+      <td>Status</td>
+  </tr>
+    </thead>
+    <tbody>
+      {{#each accidents}}
+          <tr>
+            <td>{{ UserId }}</td>
+            <td>{{ HospitalId }}</td>    
+            <td>{{ AccidentId }}</td>
+            <td>{{ PoliceId }}</td>
+            <td>{{ Status }}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+</template>

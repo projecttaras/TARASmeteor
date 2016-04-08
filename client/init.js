@@ -283,12 +283,10 @@ Template.homepage.helpers({
 
 Template.portal.helpers({
   accidents: function() {
-    user=Meteor.user();
-    orgId=user.orgId;
-    if(user.roles[0] == 'Hospital')
-      return AccidentMap.find({'HospitalId':user.orgId});
-    else
-      return AccidentMap.find({'PoliceId':user.orgId});
+    Meteor.call('getAccidentMap',Meteor.userId(),function(error,result){
+      console.log("Client");
+      // console.log(result.data);
+    });
   },
   accident: function(accidentID) {
     return Accidents.find({_id:accidentID});

@@ -41,6 +41,11 @@
             <li><a href="{{pathFor route='adduser'}}">Add User</a></li>
           </ul>
         </li>
+        {{else}}
+          {{#if isInRole 'Hospital'}}
+            <li><a href="{{pathFor route='portal'}}">Portal</a></li>
+          {{/if}}
+
         {{/if}}
           <li><a href="/logout">Logout</a></li>
       {{else}}
