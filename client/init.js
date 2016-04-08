@@ -279,3 +279,18 @@ Template.homepage.helpers({
     return route? route.lookupTemplate() : 'home';
   },
 });
+
+
+Template.portal.helpers({
+  accidents: function() {
+    user=Meteor.user();
+    orgId=user.orgId;
+    if(user.roles[0] == 'Hospital')
+      return AccidentMap.find({'HospitalId':user.orgId});
+    else
+      return AccidentMap.find({'PoliceId':user.orgId});
+  },
+  accident: function(accidentID) {
+    return Accidents.find({_id:accidentID});
+  }
+})
