@@ -207,8 +207,16 @@ Template.adduser.events({
     var userinfo={'address':address,'latlongarr':latlongarr,'hospitalmember':hospitalmember,'policemember': policemember};
     console.log("========Values from form===============");
     console.log(emailaddress+"|"+password+"|"+hospitalmember+"|"+address);
-    Meteor.call('addnewuser',emailaddress,password,roles,userinfo,function(){
-      console.log("Sending data to user..........");
+    Meteor.call('addnewuser',emailaddress,password,roles,userinfo,function(result,err){
+      if(err)
+      {
+        Alerts.add(err);
+      }
+      else
+      {
+        Alerts.add("Success, Added user","success");
+        $('input').val("");
+      }
     });
   },
 });
@@ -234,7 +242,7 @@ Template.login.events({
     Meteor.loginWithPassword({'username':emailaddress},password,function(err){
       if(err)
       {
-        console.log(err);
+        Alerts.add(err);
       }
       else
       {

@@ -1,12 +1,14 @@
 Meteor.publish("getAccidentMap",function(){
     user=Meteor.users.findOne({_id:this.userId});
     // console.log(user);
-    orgId=user.orgId;
-    // console.log(orgId);
-    if(user.roles[0] == 'Hospital')
-      return AccidentMap.find({'HospitalId':user.orgId});
-    else
-      return AccidentMap.find({'PoliceId':user.orgId});
+    if(user.orgId){
+	    orgId=user.orgId;
+	    // console.log(orgId);
+	    if(user.roles[0] == 'Hospital')
+	      return AccidentMap.find({'HospitalId':user.orgId});
+	    else
+	      return AccidentMap.find({'PoliceId':user.orgId});
+   }
 });
 
 Meteor.publish("getAccidents",function(){
