@@ -283,10 +283,7 @@ Template.homepage.helpers({
 
 Template.portal.helpers({
   accidents: function() {
-    Meteor.call('getAccidentMap',Meteor.userId(),function(error,result){
-      console.log("Client");
-      // console.log(result.data);
-    });
+       return AccidentMap.find({});
   },
   accident: function(accidentID) {
     return Accidents.find({_id:accidentID});
