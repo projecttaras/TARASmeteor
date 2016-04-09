@@ -295,5 +295,24 @@ Template.portal.helpers({
   },
   accident: function(accidentID) {
     return Accidents.find({_id:accidentID});
+  },
+});
+
+Template.portal.events({
+
+  'click #accept'(event) {
+    event.preventDefault();
+    console.log(this.HospitalId);
+    console.log(this.AccidentId);
+    Meteor.call('removeOtherHospitals',this._id,this.HospitalId,this.AccidentId,function(result,err){
+      if(err)
+      {
+        Alerts.add(err);
+      }
+      else
+      {
+        Alerts.add("Success, Hospital assigned","success");
+      }
+    });
   }
-})
+});

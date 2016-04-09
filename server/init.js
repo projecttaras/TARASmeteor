@@ -48,15 +48,23 @@ Meteor.startup(function () {
       console.log("Url to call....:"+url);
       return Meteor.http.call("GET",url);
     },
-    removeOtherHospitals: function(HospitalId,AccidentId)
+    removeOtherHospitals: function(MapId,HospitalId,AccidentId)
     {
-      AccidentMap.update({'AccidentId':AccidentId},{$set:{status: 3}});
+      AccidentMap.update(MapId,{$set:{status: 3}}, function(error){
+        if(error){
+          console.log(error);
+        }
+      });
       var accidents=AccidentMap.find({'AccidentId':AccidentId});
       accidents.forEach(function(obj){
         if(obj.HospitalId != HospitalId)
           AccidentMap.remove(obj._id);
       });
-      AccidentMap.update({'AccidentId':AccidentId,'HospitalId':HospitalId},{$set:{status: 1}});
+      AccidentMap.update(MapId,{$set:{status: 1}},function(error){
+        if(error){
+          console.log(error);
+        }
+      });
     }
   })
 });
