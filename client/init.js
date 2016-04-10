@@ -3,7 +3,13 @@
     passwordSignupFields: "USERNAME_ONLY"
   });
 
-
+//Global Helpers
+ Template.registerHelper('equals', function (a, b) {
+      return a === b;
+  });
+  Template.registerHelper('formatDate', function (date) {
+      return moment(date).format("dddd, MMMM Do YYYY, h:mm:ss a");
+  });
 
 //Map helper functions
 Template.map.onRendered(function(){
@@ -358,10 +364,19 @@ Template.homepage.helpers({
 
 Template.portal.helpers({
   accidents: function() {
-       return AccidentMap.find({});
+       return AccidentMap.find({Status:0});
+  },
+  acceptedaccidents: function() {
+       return AccidentMap.find({Status:1});
   },
   accident: function(accidentID) {
     return Accidents.find({_id:accidentID});
+  },
+  checkstatus: function(){
+    if(this.Status == 0)
+      return false;
+    else
+      return true;
   },
 });
 
@@ -369,8 +384,8 @@ Template.portal.events({
 
   'click #accept'(event) {
     event.preventDefault();
-    console.log(this.HospitalId);
-    console.log(this.AccidentId);
+    // console.log(this.HospitalId);
+    // console.log(this.AccidentId);
     Meteor.call('removeOtherHospitals',this._id,this.HospitalId,this.AccidentId,function(result,err){
       if(err)
       {

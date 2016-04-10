@@ -1,25 +1,123 @@
 <template name="portal">
-<h1> HOSPITAL PORTAL </h1>
-	<table class="table">
-    <thead>
-      <tr>
-      <td>UserID</td>
-      <td>HospitalID</td>    
-      <td>AccidentID</td>
-      <td>PoliceID</td>
-      <td>Status</td>
-  </tr>
-    </thead>
-    <tbody>
-      {{#each accidents}}
+{{#if isInRole 'Hospital' 'Police'}}
+<h1>{{#if isInRole 'Hospital'}}Hospital{{else}}Police{{/if}} PORTAL </h1>
+{{#if isInRole 'Hospital'}}
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#accidents">Accidents</a></li>
+  <li><a data-toggle="tab" href="#acceptedaccidents">Accepted Accidents</a></li>
+</ul>
+<div class="tab-content">
+   <div id="accidents" class="tab-pane fade in active">
+    {{#if accidents.count}}
+    	<table class="table">
+        <thead>
           <tr>
-            <td>{{ getUser.username}}</td>
-            <td>{{ getHospital.address }}</td>    
-            <td>{{ getAccident.location }}</td>
-            <td>{{ getPoliceStation.address }}</td>
-            <td><button id="accept" type="button" class="btn btn-success">Accept</button></td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
+          <td>Date</td>
+          <td>User</td> 
+          <td>Accident Address</td>
+          <td>PoliceID</td>
+          <td>Status</td>
+      </tr>
+        </thead>
+        <tbody>
+          {{#each accidents}}
+              <tr>
+                <td>{{ getAccident.date }}</td>
+                <td>{{ getUser}}</td>  
+                <td>{{ getAccident.location }}</td>
+                <td>{{ getPoliceStation.address }}</td>
+                <td><button id="accept" type="button" class="btn btn-success {{#if checkstatus}}disabled{{/if}}">{{#if checkstatus}}Accepted{{else}}Accept{{/if}}</button></td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      <h1>No Accidents now</h1>
+    {{/if}}
+    </div>
+    <div id="acceptedaccidents" class="tab-pane fade">
+      <table class="table">
+        <thead>
+          <tr>
+          <td>Date</td>
+          <td>User</td> 
+          <td>Accident Address</td>
+          <td>PoliceID</td>
+      </tr>
+        </thead>
+        <tbody>
+          {{#each acceptedaccidents}}
+              <tr>
+                <td>{{ formatDate getAccident.date }}</td>
+                <td>{{ getUser}}</td>  
+                <td>{{ getAccident.location }}</td>
+                <td>{{ getPoliceStation.address }}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{{else}}
+
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#acceptedaccidents">Accepted Accidents</a></li>
+  <li><a data-toggle="tab" href="#accidents">Accidents</a></li>
+</ul>
+<div class="tab-content">
+    <div id="acceptedaccidents" class="tab-pane fade">
+      <table class="table">
+        <thead>
+          <tr>
+          <td>Date</td>
+          <td>User</td> 
+          <td>Accident Address</td>
+          <td>Hospital Address</td>
+      </tr>
+        </thead>
+        <tbody>
+          {{#each acceptedaccidents}}
+              <tr>
+                <td>{{ formatDate getAccident.date }}</td>
+                <td>{{ getUser}}</td>  
+                <td>{{ getAccident.location }}</td>
+                <td>{{ getHospital.address }}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    <div id="accidents" class="tab-pane fade in active">
+    {{#if accidents.count}}
+      <table class="table">
+        <thead>
+          <tr>
+          <td>Date</td>
+          <td>User</td> 
+          <td>Accident Address</td>
+          <td>PoliceID</td>
+          <td>Status</td>
+      </tr>
+        </thead>
+        <tbody>
+          {{#each accidents}}
+              <tr>
+                <td>{{ getAccident.date }}</td>
+                <td>{{ getUser}}</td>  
+                <td>{{ getAccident.location }}</td>
+                <td>{{ getPoliceStation.address }}</td>
+                <td><button id="accept" type="button" class="btn btn-success {{#if checkstatus}}disabled{{/if}}">{{#if checkstatus}}Accepted{{else}}Accept{{/if}}</button></td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      <h1>No Accidents now</h1>
+    {{/if}}
+    </div>
+  </div>
+  {{/if}}
+{{else}}
+  <h1>Page only accessible to Hospital and Police Stations</h1>
+{{/if}}
 </template>
