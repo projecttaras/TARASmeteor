@@ -50,7 +50,8 @@ Meteor.startup(function () {
     },
     removeOtherHospitals: function(MapId,HospitalId,AccidentId)
     {
-      AccidentMap.update(MapId,{$set:{status: 3}}, function(error){
+      //console.log(AccidentMap.find({AccidentId: AccidentId}).fetch());
+      AccidentMap.update({AccidentId: AccidentId},{$set:{Status: 3}},function(error){
         if(error){
           console.log(error);
         }
@@ -60,7 +61,7 @@ Meteor.startup(function () {
         if(obj.HospitalId != HospitalId)
           AccidentMap.remove(obj._id);
       });
-      AccidentMap.update(MapId,{$set:{status: 1}},function(error){
+      AccidentMap.update(MapId,{$set:{Status: 1}},function(error){
         if(error){
           console.log(error);
         }
