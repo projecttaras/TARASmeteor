@@ -396,5 +396,25 @@ Template.portal.events({
         Alerts.add("Success, Hospital assigned","success");
       }
     });
+  },
+  'click .accidentlocation' (event) {
+    event.preventDefault();
+    Session.set('portalMapAllow',true);
+    Session.set('lat',this.getAccident().lat);
+    Session.set('longt',this.getAccident().longt);
   }
+});
+
+
+//map portal
+Template.portalmap.helpers({
+  portalMapAllow: function(){
+    return Session.get('portalMapAllow');
+  },
+  lat: function(){
+    return Session.get('lat');
+  },
+  longt: function(){
+    return Session.get('longt');
+  },
 });

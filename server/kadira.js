@@ -1,2 +1,2 @@
 //For server usage statistics
-Kadira.connect('jLJGERhykBs6JE38x', 'b50982fe-9471-4dbb-9b56-8ae9c1aaf7e3');
+Kadira.connect('wXjdYPrWdEnxPTfsQ', 'cd83da7f-3cde-4319-9338-9eb07eb6bd9e');
