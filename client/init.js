@@ -75,6 +75,8 @@ Template.map.helpers({
 
 });
 
+
+
 setMarker = function (initialLocation,location, map){
 
          var marker = new google.maps.Marker({
@@ -149,6 +151,24 @@ function get_number_of_accidents_in_radius(loc, accidents){
 
 }
 
+
+function displayInfo(circle){
+  console.log("center"+circle.getCenter());
+  console.log("bounds"+circle.getBounds());
+  var bounds = circle.getBounds();
+  var count = 0;
+  var deaths = 0;
+  accidents.forEach(function(obj){
+    accident_lat_lng = new google.maps.LatLng(obj.lat, obj.longt);
+    if(bounds.contains(accident_lat_lng)){
+      count = count + 1;
+      deaths = deaths+ obj.deaths;
+    }
+  })
+  console.log("Accidents :"+count);
+  console.log("Deaths :"+deaths);
+}
+
 Template.map.onCreated(function() {
   GoogleMaps.ready('map', function(map) {
     var latLng = Geolocation.latLng();
@@ -180,6 +200,32 @@ Template.map.onCreated(function() {
     // changeGradient();
     changeRadius();
     changeOpacity();
+    var Circle = new google.maps.Circle({
+      strokeColor: '#5b5b58',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#e7db9d',
+      fillOpacity: 0.35,
+      map: map.instance,
+      center: latLng,
+      radius: 1000,
+      editable: true,
+      draggable: true
+    });
+
+    console.log("event listeners");
+    // eventlisteners
+    google.maps.event.addListener(Circle, 'center_changed', function()   
+    {
+        console.log('Circle moved');  
+        displayInfo(Circle);  
+    });  
+
+    google.maps.event.addListener(Circle, 'radius_changed', function()   
+    {  
+        console.log('dictance changed');  
+        displayInfo(Circle);  
+    }); 
 
   });
 });
