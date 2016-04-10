@@ -378,6 +378,21 @@ Template.portal.helpers({
     else
       return true;
   },
+  getUser: function(){
+    // var username="";
+    // Meteor.call("getUser",UserId,function(err,data){
+    //   console.log(data);
+    //   username=data;
+    // });
+    // console.log("Returned content: "+ username);
+    // return username;
+    // console.log("Function called");
+    user=Meteor.users.findOne({_id:this.UserId});
+    if(user)
+      return user.username
+    else
+      return "Not found";
+  }
 });
 
 Template.portal.events({

@@ -66,7 +66,17 @@ Meteor.startup(function () {
           console.log(error);
         }
       });
-    }
+    },
+    // getUser: function(UserId) {
+    //   user=Meteor.users.findOne({_id: UserId});
+    //   if(user)
+    //   {
+    //     // console.log(user.username);
+    //     return user.username;
+    //   }
+    //   else
+    //     return "Not found";
+    // }
   })
 });
 

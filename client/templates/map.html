@@ -1,5 +1,5 @@
 <template name="map">  
-  <div class="map-container" style="height:500px;" >
+  <div class="map-container">
     {{#unless geolocationError}}
       {{> googleMap name="map" options=mapOptions}}
     {{else}}
@@ -7,7 +7,7 @@
     {{/unless}}
 
         <!-- your form -->
-        <button id="simButton">Start simulation</button>
+         <button id="simButton" class="btn btn-default orange-circle-button" href="">Start<br />Simulation</button>
 
   </div>
   
