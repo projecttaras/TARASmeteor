@@ -71,14 +71,16 @@ Template.map.helpers({
 
 
 
-setMarker = function (initialLocation,location, map){
+
+setMarker = function (initialLocation,location, map, isdraggable=false){
 
          var marker = new google.maps.Marker({
             position: initialLocation,
             title: location,
             map: map,
-            draggable: false,
-            icon: 'http://www.fiatusa.com/assets/images/2015/vehicles/500e/marker-22x31.png',
+            draggable: isdraggable,
+            // icon: 'http://www.fiatusa.com/assets/images/2015/vehicles/500e/marker-22x31.png',
+            icon: 'http://icons.iconarchive.com/icons/icons8/windows-8/24/Transport-Car-icon.png',
             animation: google.maps.Animation.DROP
         });
 
@@ -88,6 +90,8 @@ setMarker = function (initialLocation,location, map){
         google.maps.event.addListener(marker, 'mouseover', function() {
             this['infowindow'].open(map, this);
         });
+
+        return marker;
 }
 
 function getPoints() {
@@ -140,11 +144,19 @@ function get_number_of_accidents_in_radius(loc, accidents){
 
   })
   if (count > threshold){
-    console.log("SLOW DOWN BITCH");
+    console.log("SLOW DOWN!");
+    alert("SLOW DOWN");
   }
 
 }
 
+
+function startSimulation(map,accidents){
+  var latLng = Geolocation.latLng();
+  var currentLocationMarker = setMarker(new google.maps.LatLng(latLng.lat, latLng.lng), "Your location", map.instance, true);
+  google.maps.event.addListener(currentLocationMarker, 'drag', function(e) { get_number_of_accidents_in_radius(e, accidents); } );
+    
+}
 
 function displayInfo(circle){
   console.log("center"+circle.getCenter());
@@ -167,12 +179,11 @@ Template.map.onCreated(function() {
   GoogleMaps.ready('map', function(map) {
     var latLng = Geolocation.latLng();
     accidents = Accidents.find({});
+    // map.instance.addListener('click', function(e) {
+    //   get_number_of_accidents_in_radius(e, accidents);
+    // });
 
-    map.instance.addListener('click', function(e) {
-      get_number_of_accidents_in_radius(e, accidents);
-    });
-    setMarker(new google.maps.LatLng(latLng.lat, latLng.lng), "Your location", map.instance);
-    
+       
 
     var accident_lat_lon_list = [];
 
@@ -222,6 +233,16 @@ Template.map.onCreated(function() {
     }); 
 
   });
+});
+
+
+Template.map.events({
+  'click #simButton'(e){
+      event.preventDefault();
+      accidents = Accidents.find({});
+      console.log("HEY");
+      startSimulation(GoogleMaps.maps.map, accidents); 
+  }
 });
 
 
