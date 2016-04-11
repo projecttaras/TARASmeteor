@@ -1,3 +1,8 @@
+Accounts.config({
+  forbidClientAccountCreation : true
+});
+
+
 Meteor.startup(function () {
   // $.getScript('https://maps.googleapis.com/maps/api/js', function(){});
   console.log("Server init started........");
@@ -67,6 +72,27 @@ Meteor.startup(function () {
         }
       });
     },
+    addNormalUser: function(emailaddress,password)
+    {
+      roles=[];
+      roles.push("Normal");
+      setProfile=0;
+      userId=Accounts.createUser({
+            'username': emailaddress,
+            'email': emailaddress,
+            'password': password,
+            'roles': roles,
+            'setProfile': setProfile,
+        });
+    },
+    getProfileStatus: function(userId){
+      user=Meteor.users.findOne({_id:userId});
+      console.log(user.setProfile);
+      if(user.setProfile == 0)
+        return true;
+      else
+        return false;
+    }
     // getUser: function(UserId) {
     //   user=Meteor.users.findOne({_id: UserId});
     //   if(user)

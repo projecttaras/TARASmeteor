@@ -10,7 +10,17 @@
   Template.registerHelper('formatDate', function (date) {
       return moment(date).format("dddd, MMMM Do YYYY, h:mm:ss a");
   });
-
+//Navigation helpers
+Template.navigation.helpers({
+  getProfileStatus: function()
+  {
+   var up=UserProfile.find({UserId:Meteor.userId});
+   if(up.count())
+    return false;
+  else
+    return true;
+  },
+})
 //Map helper functions
 Template.map.onRendered(function(){
   GoogleMaps.load({
@@ -331,12 +341,16 @@ Template.register.events({
     var emailaddress=$('#emailaddress').val();
     var password=$('#Password').val();
     var confirmpassword=$('#ConfirmPassword').val();
-    Accounts.createUser({
-            'username': emailaddress,
-            'email': emailaddress,
-            'password': password,
-        });
-    Router.go('home');
+    Meteor.call('addNormalUser',emailaddress,password,function(error,result)
+    {
+      if(error)
+        Alerts.add(error);
+      else
+      {
+        Alerts.add("Successfully created account","success");
+        Router.go('map');
+      }
+    });
   },
 });
 

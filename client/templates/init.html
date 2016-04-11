@@ -29,7 +29,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="{{pathFor route='home'}}">Home<span class="sr-only">(current)</span></a></li>
-        <!--<li><a href="{{pathFor route='map'}}">Map</a></li>-->
+        <li><a href="{{pathFor route='map'}}">Map</a></li>
       </ul>
        <ul class="nav navbar-nav navbar-right">
       {{#if currentUser}}
@@ -46,7 +46,9 @@
           {{#if isInRole 'Hospital'}}
             <li><a href="{{pathFor route='portal'}}">Portal</a></li>
           {{/if}}
-
+          {{#if isInRole 'Normal'}}
+            <li><a href="#">Profile {{#if getProfileStatus}}<span class="glyphicon glyphicon-exclamation-sign"></span>{{/if}}</a></li>
+          {{/if}}
         {{/if}}
           <li><a href="/logout">Logout</a></li>
       {{else}}
