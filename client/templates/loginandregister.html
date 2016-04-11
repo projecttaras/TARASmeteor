@@ -1,31 +1,42 @@
 <template name="login">
-	<div class="container" align="center">
-		<h1>Sign In</h1>
-		<hr>
-		    <div class="form-group">
-    			<label for="emailaddress">Email address</label>
-    			<input type="email" class="form-control" id="emailaddress" placeholder="Email">
-  			</div>
-  			<div class="form-group">
-    			<label for="Password">Password</label>
-    			<input type="password" class="form-control" id="Password" placeholder="Password">
-  			</div>
-  			<div class="form-group">
-      			<button id="submitform" class="btn btn-default col-xs-12">Sign In</button>
+	<div class="container">
+
+    <div class="row">
+        <div class="six columns">
+          
+      		  <h3>Sign In</h3>
+      		<hr>
+      		    <!-- <div class="form-group"> -->
+          			<label for="emailaddress">Email address</label>
+          			<input type="email" class="form-control u-full-width" id="emailaddress" placeholder="Email">
+        			<!-- </div> -->
+        			<div class="form-group">
+          			<label for="Password">Password</label>
+          			<input type="password" class="form-control" id="Password" placeholder="Password">
+        			</div>
+        			<div class="form-group">
+            			<button id="submitform" class="button-primary u-full-width">Sign In</button>
+      			</div>
+            <br>
+            <br>
+      			<hr>
+            <br>
+
+      </div>
+
+      <div class="six columns">
+        {{> register }}
+      </div>
+
+
 			</div>
-      <br>
-      <br>
-			<hr>
-      <br>
-			<h2>Register</h2>
-      <br>
-      <a href="/register" class="btn btn-success col-xs-12">Register</a>
 	</div>
+  
 </template>
 
 <template name="register">
-	<div class="container" align="center">
-			<h1>Register</h1>
+	<div class="container">
+			<h3>Register</h3>
 			<hr>
 			<div class="form-group">
     			<label for="emailaddress">Email address</label>
@@ -40,7 +51,7 @@
     			<input type="password" class="form-control" id="ConfirmPassword" placeholder="Password">
   			</div>
   			<div class="form-group">
-      			<button id="submitform" class="btn btn-default col-xs-12">Register</button>
+      			<button id="submitform" class="button u-full-width">Register</button>
 			</div>
 		<br>
 		<br>

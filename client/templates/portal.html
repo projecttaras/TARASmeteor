@@ -1,6 +1,7 @@
 <template name="portal">
+<div class="container">
 {{#if isInRole 'Hospital' 'Police'}}
-<h1>{{#if isInRole 'Hospital'}}Hospital{{else}}Police{{/if}} PORTAL </h1>
+<h3>{{#if isInRole 'Hospital'}}Hospital{{else}}Police{{/if}} PORTAL </h3>
 {{#if isInRole 'Hospital'}}
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#accidents">Accidents</a></li>
@@ -33,7 +34,7 @@
       </table>
       {{> portalmap}}
     {{else}}
-      <h1>No Accidents now</h1>
+      <h3>No Accidents now</h3>
     {{/if}}
     </div>
     <div id="acceptedaccidents" class="tab-pane fade">
@@ -113,14 +114,15 @@
         </tbody>
       </table>
     {{else}}
-      <h1>No Accidents now</h1>
+      <h3>No Accidents now</h3>
     {{/if}}
     </div>
   </div>
   {{/if}}
 {{else}}
-  <h1>Page only accessible to Hospital and Police Stations</h1>
+  <h3>Page only accessible to Hospital and Police Stations</h3>
 {{/if}}
+</div>
 </template>
 
 

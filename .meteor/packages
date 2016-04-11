@@ -22,7 +22,6 @@ aldeed:collection2
 accounts-base
 accounts-password
 alanning:roles
-twbs:bootstrap
 fortawesome:fontawesome
 yogiben:admin
 accounts-ui
@@ -35,3 +34,4 @@ mdg:geolocation
 mrt:bootstrap-alerts
 check
 momentjs:moment
+johnantoni:meteor-skeleton

@@ -3,6 +3,10 @@ Accounts.config({
 });
 
 
+
+
+  
+
 Meteor.startup(function () {
   // $.getScript('https://maps.googleapis.com/maps/api/js', function(){});
   console.log("Server init started........");
@@ -103,7 +107,17 @@ Meteor.startup(function () {
     //   else
     //     return "Not found";
     // }
+
+     // Variables
+  
+
   })
+
+
+
+  
+  
+
 });
 
 Accounts.onCreateUser(function (options, user) {

@@ -1,3 +1,18 @@
+WebFontConfig = {
+      google: { families: [ 'Bitter:700,400:latin', '   Indie Flower', 'Fira Mono','Raleway' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+      console.log("async fonts loaded", WebFontConfig);
+    })();
+
+
 
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
@@ -10,17 +25,9 @@
   Template.registerHelper('formatDate', function (date) {
       return moment(date).format("dddd, MMMM Do YYYY, h:mm:ss a");
   });
-//Navigation helpers
-Template.navigation.helpers({
-  getProfileStatus: function()
-  {
-   var up=UserProfile.find({UserId:Meteor.userId});
-   if(up.count())
-    return false;
-  else
-    return true;
-  },
-})
+
+
+
 //Map helper functions
 Template.map.onRendered(function(){
   GoogleMaps.load({

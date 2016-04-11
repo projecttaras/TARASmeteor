@@ -1,14 +1,33 @@
 <template name="map">  
-  <div class="map-container">
-    {{#unless geolocationError}}
-      {{> googleMap name="map" options=mapOptions}}
-    {{else}}
-      Geolocation failed: {{geolocationError}}
-    {{/unless}}
+	
+	
+	<div class="row">
+		
+		<div class="twelve columns">
+			  <div class="map-container">
 
-        <!-- your form -->
-         <button id="simButton" class="btn btn-default orange-circle-button" href="">Start<br />Simulation</button>
 
-  </div>
-  
+		    {{#unless geolocationError}}
+		      {{> googleMap name="map" options=mapOptions}}
+		    {{else}}
+		      Geolocation failed: {{geolocationError}}
+		    {{/unless}}
+
+		        <!-- your form -->
+
+				
+
+		  	</div>
+		</div>
+
+
+			        <div class="map-footer">
+			        
+			         	<button id="simButton" class="button-primary" >Start Simulation</button>
+			         </div>
+         
+  	</div>
+  	
+  	
+
 </template>  

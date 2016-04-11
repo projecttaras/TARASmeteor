@@ -1,5 +1,5 @@
 <template name="main">
-	{{> navigation }}
+	{{> navigation1 }}
   <div class="container-fluid">
   {{> bootstrapAlerts}}
 	{{>yield}}
@@ -89,4 +89,61 @@
       {{/each}}
     </tbody>
   </table>
+</template>
+
+
+
+
+<template name="navigation1">
+   <div class="navbar-spacer"></div>
+    <nav class="navbar">
+      <div class="container">
+        <ul class="navbar-list">
+
+          <li class="navbar-item"><a class="navbar-link" href="{{pathFor route='home'}}">Home</a></li>
+          <li class="navbar-item"><a class="navbar-link" href="{{pathFor route='map'}}">Map</a></li>
+        {{#if currentUser}}
+        {{#if isInRole 'admin' }}
+
+        <li class="navbar-item">
+            <a class="navbar-link" href="#" data-popover="#codeNavPopover">Menu</a>
+            <div id="codeNavPopover" class="popover">
+              <ul class="popover-list">
+                <li class="popover-item">
+                  <a class="popover-link" href="/admin">Admin Portal</a>
+                </li>
+                <li class="popover-item">
+                  <a class="popover-link" href="{{pathFor route='upload'}}">Upload JSON</a>
+                </li>
+                <li class="popover-item">
+                  <a class="popover-link" href="{{pathFor route='adduser'}}">Add user</a>
+                </li>
+               
+              </ul>
+            </div>
+          </li>
+        {{else}}
+          {{#if isInRole 'Hospital'}}
+
+            <li class="navbar-item"><a class="navbar-link" href="{{pathFor route='portal'}}">Portal</a></li>
+          {{/if}}
+          {{#if isInRole 'Normal'}}
+            <li class="navbar-item"><a class="navbar-link" href="{{pathFor route='profile'}}">Profile
+            {{#if getProfileStatus}}<span class="glyphicon glyphicon-exclamation-sign"></span>{{/if}}</a></li>
+            
+          {{/if}}
+        {{/if}}
+
+          <li class="navbar-item"><a class="navbar-link" href="/logout">Logout</a></li>
+      {{else}}
+          <li class="navbar-item"><a class="navbar-link" href="{{pathFor route='login'}}">Login</a></li>
+          <li class="navbar-item"><a class="navbar-link" href="{{pathFor route='register'}}">Register</a></li>
+          
+      {{/if}}
+
+         
+        </ul>
+      </div>
+    </nav>
+
 </template>
