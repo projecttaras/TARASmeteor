@@ -41,7 +41,10 @@ email@1.0.8
 es5-shim@4.1.14
 fastclick@1.0.7
 fortawesome:fontawesome@4.5.0
+fourseven:scss@3.4.2
 geojson-utils@1.0.4
+hashwin:ionic-sass@0.3.3
+hashwin:ionicons-sass@0.1.9
 hot-code-push@1.0.0
 html-tools@1.0.5
 htmljs@1.0.5
@@ -68,6 +71,7 @@ meteor-base@1.0.1
 meteorhacks:kadira@2.28.5
 meteorhacks:meteorx@1.4.1
 meteorhacks:unblock@1.1.0
+meteoric:ionic@0.2.0
 mfactory:admin-lte@0.0.2
 minifiers@1.1.7
 minimongo@1.0.10
@@ -93,6 +97,7 @@ reload@1.1.4
 retry@1.0.4
 reywood:publish-composite@1.4.2
 routepolicy@1.0.6
+seba:minifiers-autoprefixer@0.0.2
 service-configuration@1.0.5
 session@1.1.1
 sha@1.0.4
@@ -101,7 +106,6 @@ simple:rest@1.1.1
 spacebars@1.0.7
 spacebars-compiler@1.0.7
 srp@1.0.4
-standard-minifiers@1.0.2
 templating@1.1.5
 templating-tools@1.0.0
 tomi:upload-jquery@2.2.3

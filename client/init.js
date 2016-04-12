@@ -447,3 +447,10 @@ Template.portalmap.helpers({
     return Session.get('longt');
   },
 });
+
+
+Template.ioncontent.helpers({
+  accidents: function(){
+    return Accidents.find({});
+  }
+});
