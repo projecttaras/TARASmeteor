@@ -125,4 +125,7 @@ $( ".menu1" ).click(function() {
   .sidebar('toggle')
 ;
 });
+$('.menu .item')
+  .tab()
+;
 });

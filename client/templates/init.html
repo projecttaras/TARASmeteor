@@ -106,12 +106,21 @@
           </div>
       </div>
       <div class="ui left vertical inverted labeled icon sidebar menu">
-        <a class="item" href="{{pathFor route='map'}}">Map</a>
+        <a class="item" href="{{pathFor route='map'}}">
+        <i class="map icon"></i>
+        Map
+      </a>
         {{#if currentUser}}
               {{#if isInRole 'admin' }}
-                <a class="item" href="/admin">Admin</a>
-                <a class="item" href="{{pathFor route='upload'}}">Upload JSON</a>
-                <a class="item" href="{{pathFor route='adduser'}}">Add User</a>
+                <a class="item" href="/admin">
+                <i class="user icon"></i>
+                Admin</a>
+                <a class="item" href="{{pathFor route='upload'}}">
+                  <i class="upload icon"></i>
+                Upload JSON</a>
+                <a class="item" href="{{pathFor route='adduser'}}">
+                <i class="add user icon"></i>
+                Add User</a>
               <!-- <a class="ui dropdown item">
             Admin Menu
             <i class="dropdown icon"></i>
@@ -124,22 +133,33 @@
           {{else}}
                 {{#if isInRole 'Hospital'}}
                   <a class="item" href="{{pathFor route='portal'}}">
+                  <i class="emergency icon"></i>
                   Portal
                   </a>
                 {{/if}}
                 {{#if isInRole 'Police'}}
                   <a class="item" href="{{pathFor route='portal'}}">
+                  <i class="spy icon"></i>
                   Portal
                   </a>
                 {{/if}}
                 {{#if isInRole 'Normal'}}
-                  <a class="item" href="{{pathFor route='profile'}}">Profile {{#if getProfileStatus}}<span class="glyphicon glyphicon-exclamation-sign"></span>{{/if}}</a>
+
+                  <a class="item" href="{{pathFor route='profile'}}">
+                  <i class="user icon"></i>
+                  Profile {{#if getProfileStatus}}<span class="glyphicon glyphicon-exclamation-sign"></span>{{/if}}</a>
                 {{/if}}
               {{/if}}
-                <a class="item" href="/logout">Logout</a>
+                <a class="item" href="/logout">
+                <i class="sign out icon"></i>
+                Logout</a>
             {{else}}
-                <a class="item" href="{{pathFor route='login'}}">Login</a>
-                <a class="item" href="{{pathFor route='register'}}">Register</a>
+                <a class="item" href="{{pathFor route='login'}}">
+                <i class="sign in icon"></i>
+                Login</a>
+                <a class="item" href="{{pathFor route='register'}}">
+                <i class="add user icon"></i>
+                Register</a>
             {{/if}} 
       </div>
       {{> bootstrapAlerts}}

@@ -2,14 +2,14 @@
 <div class="container">
 {{#if isInRole 'Hospital'}}
 <h3>HOSPITAL PORTAL</h3>
-<ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#accidents">Accidents</a></li>
-  <li><a data-toggle="tab" href="#acceptedaccidents">Accepted Accidents</a></li>
-</ul>
-<div class="tab-content">
-   <div id="accidents" class="tab-pane fade in active">
+<div class="ui top attached tabular menu">
+  <a class="active item" data-tab="first">Accidents</a>
+  <a class="item" data-tab="second">Accepted Accidents</a>
+</div>
+<div class="ui bottom attached active tab segment" data-tab="first">
+  <div id="accidents">
     {{#if accidents.count}}
-    	<table class="table">
+      <table class="table">
         <thead>
           <tr>
           <td>Date</td>
@@ -36,7 +36,9 @@
       <h3>No Accidents now</h3>
     {{/if}}
     </div>
-    <div id="acceptedaccidents" class="tab-pane fade">
+</div>
+<div class="ui bottom attached tab segment" data-tab="second">
+  <div id="acceptedaccidents">
       <table class="table">
         <thead>
           <tr>
@@ -58,15 +60,15 @@
         </tbody>
       </table>
     </div>
-  </div>
+</div>
 {{else}}
 {{#if isInRole 'Police'}}
 <h3>POLICE PORTAL</h3>
-<ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#accidents">Accidents</a></li>
-</ul>
-<div class="tab-content">
-   <div id="accidents" class="tab-pane fade in active">
+<div class="ui top attached tabular menu">
+  <a class="active item" data-tab="first">Accidents</a>
+</div>
+<div class="ui bottom attached active tab segment" data-tab="first">
+<div id="accidents">
     {{#if allaccidents.count}}
       <table class="ui table">
         <thead>
@@ -101,7 +103,7 @@
       <h3>No Accidents now</h3>
     {{/if}}
     </div>
-  </div>
+</div>
 {{/if}}
 {{/if}}
 </div>
