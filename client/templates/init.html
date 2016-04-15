@@ -106,10 +106,14 @@
           </div>
       </div>
       <div class="ui left vertical inverted labeled icon sidebar menu">
-        <a class="item" href="{{pathFor route='map'}}">Map</a>
+        <a class="item" href="{{pathFor route='map'}}">
+        <i class="map icon"></i>
+        Map
+      </a>
         {{#if currentUser}}
               {{#if isInRole 'admin' }}
-                <a class="item" href="/admin">Admin</a>
+                <a class="item" href="/admin">
+                Admin</a>
                 <a class="item" href="{{pathFor route='upload'}}">Upload JSON</a>
                 <a class="item" href="{{pathFor route='adduser'}}">Add User</a>
               <!-- <a class="ui dropdown item">
@@ -124,22 +128,32 @@
           {{else}}
                 {{#if isInRole 'Hospital'}}
                   <a class="item" href="{{pathFor route='portal'}}">
+                  <i class="Emergency icon"></i>
                   Portal
                   </a>
                 {{/if}}
                 {{#if isInRole 'Police'}}
                   <a class="item" href="{{pathFor route='portal'}}">
+                  <i class="Spy icon"></i>
                   Portal
                   </a>
                 {{/if}}
                 {{#if isInRole 'Normal'}}
-                  <a class="item" href="{{pathFor route='login'}}">Profile {{#if getProfileStatus}}<span class="glyphicon glyphicon-exclamation-sign"></span>{{/if}}</a>
+                  <a class="item" href="{{pathFor route='login'}}">
+                  <i class="map icon"></i>
+                  Profile {{#if getProfileStatus}}<span class="glyphicon glyphicon-exclamation-sign"></span>{{/if}}</a>
                 {{/if}}
               {{/if}}
-                <a class="item" href="/logout">Logout</a>
+                <a class="item" href="/logout">
+                <i class="map icon"></i>
+                Logout</a>
             {{else}}
-                <a class="item" href="{{pathFor route='login'}}">Login</a>
-                <a class="item" href="{{pathFor route='register'}}">Register</a>
+                <a class="item" href="{{pathFor route='login'}}">
+                <i class="map icon"></i>
+                Login</a>
+                <a class="item" href="{{pathFor route='register'}}">
+                <i class="map icon"></i>
+                Register</a>
             {{/if}} 
       </div>
       {{> bootstrapAlerts}}
