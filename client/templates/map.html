@@ -1,12 +1,5 @@
 <template name="map">  
-	
-	
-	<div class="row">
-		
-		<div class="twelve columns">
 			  <div class="map-container">
-
-
 		    {{#unless geolocationError}}
 		      {{> googleMap name="map" options=mapOptions}}
 		    {{else}}
@@ -14,20 +7,10 @@
 		    {{/unless}}
 
 		        <!-- your form -->
-
-				
-
 		  	</div>
-		</div>
-
-
-			        <div class="map-footer">
-			        
-			         	<button id="simButton" class="button-primary" >Start Simulation</button>
-			         </div>
-         
+	        <div class="map-footer">
+	        
+	         	<button id="simButton" class="button-primary" >Start Simulation</button>
+	         </div> 
   	</div>
-  	
-  	
-
 </template>  
