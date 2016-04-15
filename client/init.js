@@ -1,5 +1,5 @@
 WebFontConfig = {
-      google: { families: [ 'Bitter:700,400:latin', '   Indie Flower', 'Fira Mono','Raleway' ] }
+      google: { families: [ 'Roboto:300' ] }
     };
     (function() {
       var wf = document.createElement('script');
@@ -372,16 +372,41 @@ Template.register.events({
     var emailaddress=$('#emailaddress').val();
     var password=$('#Password').val();
     var confirmpassword=$('#ConfirmPassword').val();
+    var name = $('#name').val();
+    var phoneNumber = $('#phoneNumber').val().toString();
+    var EmergencyNo = $('#EmergencyNo').val().toString();
+    var carNo = $('#carNo').val();
+    var phoneNumbers = []
+    phoneNumbers.push(EmergencyNo);
+
+    console.log(""+name+phoneNumber+EmergencyNo+carNo);
+
     Meteor.call('addNormalUser',emailaddress,password,function(error,result)
     {
       if(error)
         Alerts.add(error);
       else
       {
-        Alerts.add("Successfully created account","success");
-        Router.go('map');
+        Alerts.add("Successfully created User","success");
+        console.log(""+result)
+
+        Meteor.call('addUserProfile',result,name,phoneNumber,phoneNumbers, carNo, function(error,result)
+            {
+              if(error)
+                Alerts.add(error);
+              else
+              {
+                Alerts.add("Successfully created UserProfile","success");
+                Router.go('map');
+              }
+            });
       }
     });
+  
+
+
+
+
   },
 });
 

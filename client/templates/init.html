@@ -144,7 +144,8 @@
                   </a>
                 {{/if}}
                 {{#if isInRole 'Normal'}}
-                  <a class="item" href="{{pathFor route='login'}}">
+
+                  <a class="item" href="{{pathFor route='profile'}}">
                   <i class="user icon"></i>
                   Profile {{#if getProfileStatus}}<span class="glyphicon glyphicon-exclamation-sign"></span>{{/if}}</a>
                 {{/if}}

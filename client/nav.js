@@ -118,7 +118,7 @@ $(document).ready(function() {
 Template.semanticnav.onRendered(function(){
 // console.log("afqfdqefd");
 $('#app .ui.sidebar')
-  .sidebar({ context: $('#app') }).sidebar('setting', 'transition', 'overlay')
+  .sidebar({ context: $('#app') }).sidebar('setting', 'transition', 'overlay');
 
 $( ".menu1" ).click(function() {
   $('.ui.sidebar')

@@ -34,6 +34,8 @@ Meteor.publish("userProfile",function(){
 	userprofile=UserProfile.find({UserId: this.userId});
 	if(userprofile.count())
 		return userprofile;
-	else
+	else{
+		console.log("Empty user profile list");
 		return;
+	}
 })
