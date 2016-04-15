@@ -5,29 +5,24 @@
         <div class="six columns">
           
       		  <h3>Sign In</h3>
-      		<hr>
-      		    <!-- <div class="form-group"> -->
-          			<label for="emailaddress">Email address</label>
-          			<input type="email" class="form-control u-full-width" id="emailaddress" placeholder="Email">
-        			<!-- </div> -->
-        			<div class="form-group">
-          			<label for="Password">Password</label>
-          			<input type="password" class="form-control" id="Password" placeholder="Password">
-        			</div>
-        			<div class="form-group">
-            			<button id="submitform" class="button-primary u-full-width">Sign In</button>
-      			</div>
+      		<form class="ui form">
+            <div class="field">
+            <label>Email</label>
+              <input type="email" id="emailaddress" placeholder="Email">
+            </div>
+            <div class="field">
+              <label>Password</label>
+                <input type="password" id="Password" placeholder="Password">
+            </div>
+            <button class="fluid ui green basic button" type="submit">Sign In</button>
+          </form>
+          
             <br>
             <br>
       			<hr>
             <br>
 
       </div>
-
-      <div class="six columns">
-        {{> register }}
-      </div>
-
 
 			</div>
 	</div>
@@ -36,23 +31,22 @@
 
 <template name="register">
 	<div class="container">
-			<h3>Register</h3>
 			<hr>
-			<div class="form-group">
-    			<label for="emailaddress">Email address</label>
-    			<input type="email" class="form-control" id="emailaddress" placeholder="Email">
-  			</div>
-  			<div class="form-group">
-    			<label for="Password">Password</label>
-    			<input type="password" class="form-control" id="Password" placeholder="Password">
-  			</div>
-  			<div class="form-group">
-    			<label for="ConfirmPassword">Confirm Password</label>
-    			<input type="password" class="form-control" id="ConfirmPassword" placeholder="Password">
-  			</div>
-  			<div class="form-group">
-      			<button id="submitform" class="button u-full-width">Register</button>
-			</div>
+      <form class="ui form">
+            <div class="field">
+            <label>Email</label>
+              <input type="email" id="emailaddress" placeholder="Email">
+            </div>
+            <div class="field">
+              <label for="Password">Password</label>
+                <input type="password" id="Password" placeholder="Password">
+            </div>
+            <div class="field">
+              <label for="ConfirmPassword">Confirm Password</label>
+                <input type="password" id="ConfirmPassword" placeholder="Password">
+            </div>
+            <button class="fluid ui green basic button" type="submitform">Register</button>
+          </form>
 		<br>
 		<br>
 		<br>
