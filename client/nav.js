@@ -124,7 +124,7 @@ $('.context.example .ui.sidebar')
   .sidebar('attach events', '.context.example .menu .item')
 ;
 
-$( ".item" ).click(function() {
+$( ".menu1" ).click(function() {
   $('.ui.sidebar')
   .sidebar('toggle')
 ;

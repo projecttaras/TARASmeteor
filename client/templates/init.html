@@ -2,7 +2,7 @@
 	{{> semanticnav }}
   <div class="container-fluid">
   {{> bootstrapAlerts}}
-	
+	<!-- {{> yield}} -->
   </div>
 </template>
 
@@ -96,21 +96,63 @@
 
 
 <template name="semanticnav">
-<div class="ui top attached demo menu">
-  <a class="item">
+<div class="ui top attached menu">
+  <a class="item menu1">
     <i class="sidebar icon"></i>
     Menu
   </a>
+  {{#if currentUser}}
+        {{#if isInRole 'admin' }}
+        <div class="right menu">
+          <a class="ui dropdown item">
+          Admin Menu
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <div class="item"><a href="/admin">Admin</a></div>
+            <div class="item"><a href="{{pathFor route='upload'}}">Upload JSON</a></div>
+            <div class="item"><a href="{{pathFor route='adduser'}}">Add User</a></div>
+          </div>
+        </a>
+        </div>
+        <!-- <a class="ui dropdown item">
+      Admin Menu
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <div class="item"><a href="/admin">Admin</a></div>
+        <div class="item"><a href="{{pathFor route='upload'}}">Upload JSON</a></div>
+        <div class="item"><a href="{{pathFor route='adduser'}}">Add User</a></div>
+      </div>
+    </a> -->
+    {{else}}
+          {{#if isInRole 'Hospital'}}
+            <a class="item" href="{{pathFor route='portal'}}">
+            Portal
+            </a>
+          {{/if}}
+          {{#if isInRole 'PoliceStation'}}
+            <a class="item" href="{{pathFor route='portal'}}">
+            Portal
+            </a>
+          {{/if}}
+          {{#if isInRole 'Normal'}}
+            <a class="item" href="{{pathFor route='login'}}">Profile {{#if getProfileStatus}}<span class="glyphicon glyphicon-exclamation-sign"></span>{{/if}}</a>
+          {{/if}}
+        {{/if}}
+          <a class="item" href="/logout">Logout</a>
+      {{else}}
+          <a class="item" href="{{pathFor route='login'}}">Login</a>
+          <a class="item" href="{{pathFor route='register'}}">Register</a>
+      {{/if}} 
 </div>
 <div class="ui bottom attached segment pushable">
   <div class="ui inverted labeled icon left inline vertical sidebar menu">
-    <a class="item">
+    <a class="item" href="{{pathFor route='home'}}">
       <i class="home icon"></i>
       Home
     </a>
-    <a class="item">
+    <a class="item" href="{{pathFor route='map'}}">
       <i class="block layout icon"></i>
-      Topics
+      Map
     </a>
     <a class="item">
       <i class="smile icon"></i>
