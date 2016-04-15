@@ -1,8 +1,7 @@
 <template name="portal">
 <div class="container">
-{{#if isInRole 'Hospital' 'PoliceStation'}}
-<h3>{{#if isInRole 'Hospital'}}Hospital{{else}}PoliceStation{{/if}} PORTAL </h3>
 {{#if isInRole 'Hospital'}}
+<h3>HOSPITAL PORTAL</h3>
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#accidents">Accidents</a></li>
   <li><a data-toggle="tab" href="#acceptedaccidents">Accepted Accidents</a></li>
@@ -61,66 +60,49 @@
     </div>
   </div>
 {{else}}
-
+{{#if isInRole 'Police'}}
+<h3>POLICE PORTAL</h3>
 <ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#acceptedaccidents">Accepted Accidents</a></li>
-  <li><a data-toggle="tab" href="#accidents">Accidents</a></li>
+  <li class="active"><a data-toggle="tab" href="#accidents">Accidents</a></li>
 </ul>
 <div class="tab-content">
-    <div id="acceptedaccidents" class="tab-pane fade">
-      <table class="table">
+   <div id="accidents" class="tab-pane fade in active">
+    {{#if allaccidents.count}}
+      <table class="ui table">
         <thead>
           <tr>
           <td>Date</td>
           <td>User</td> 
           <td>Accident Address</td>
-          <td>Hospital Address</td>
-      </tr>
-        </thead>
-        <tbody>
-          {{#each acceptedaccidents}}
-              <tr>
-                <td>{{ formatDate getAccident.date }}</td>
-                <td>{{ getUser}}</td>  
-                <td>{{ getAccident.location }}</td>
-                <td>{{ getHospital.address }}</td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
-    <div id="accidents" class="tab-pane fade in active">
-    {{#if accidents.count}}
-      <table class="table">
-        <thead>
-          <tr>
-          <td>Date</td>
-          <td>User</td> 
-          <td>Accident Address</td>
-          <td>PoliceID</td>
           <td>Status</td>
+          <td>Hospital</td>
       </tr>
         </thead>
         <tbody>
-          {{#each accidents}}
+          {{#each allaccidents}}
               <tr>
                 <td>{{ getAccident.date }}</td>
                 <td>{{ getUser}}</td>  
-                <td>{{ getAccident.location }}</td>
-                <td>{{ getPoliceStation.address }}</td>
-                <td><button id="accept" type="button" class="btn btn-success {{#if checkstatus}}disabled{{/if}}">{{#if checkstatus}}Accepted{{else}}Accept{{/if}}</button></td>
+                <td class="accidentlocation">{{ getAccident.location }}</td>
+                <td>{{#if checkstatus}}<button class="ui green basic button">
+                Accepted
+              </button>
+              {{else}}<button class="ui red basic button">
+                Pending...
+              </button>{{/if}}</td>
+                <td>{{ getHospital.address }}</td>
+                
             </tr>
           {{/each}}
         </tbody>
       </table>
+      {{> portalmap}}
     {{else}}
       <h3>No Accidents now</h3>
     {{/if}}
     </div>
   </div>
-  {{/if}}
-{{else}}
-  <h3>Page only accessible to Hospital and Police Stations</h3>
+{{/if}}
 {{/if}}
 </div>
 </template>

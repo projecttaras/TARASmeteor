@@ -30,6 +30,19 @@ WebFontConfig = {
 
 //Map helper functions
 Template.map.onRendered(function(){
+  $('.context.example .ui.sidebar')
+  .sidebar({
+    context: $('.context.example .bottom.segment')
+  })
+  .sidebar('attach events', '.context.example .menu .item')
+;
+
+$( ".menu1" ).click(function() {
+  $('.ui.sidebar')
+  .sidebar('toggle')
+;
+});
+
   GoogleMaps.load({
     libraries: 'visualization'
   });
@@ -336,7 +349,7 @@ Template.login.events({
       }
       else
       {
-        Router.go('home');
+        Router.go('map');
       }
     });
   },
@@ -423,6 +436,9 @@ Template.portal.helpers({
       return false;
     else
       return true;
+  },
+  allaccidents: function() {
+       return AccidentMap.find({});
   },
   getUser: function(){
     // var username="";

@@ -1,38 +1,39 @@
 <template name="profile">
-  <div class="container">
-    <div class="row">
-
+  <div class="ui text container">
 
 
      <h2> Welcome, {{ userprofile.name }} </h2>
      {{#if Template.subscriptionsReady}}
-     <form>
-      <div class="form-group">
+     <form class="ui form">
+      
+      <div class=" field">
         <label for="Name">Name</label>
         <input type="text" class="form-control" id="name" name="name" placeholder="Name" value= "{{userprofile.name}}">
       </div>
-      <div class="form-group">
+      <div class=" field">
         <label for="mobileNo">Phone Number</label>
         <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder value= "{{userprofile.mobileNo}}">
       </div>
-      <div class="form-group">
+    
+
+     
+      <div class=" field">
         <label for="carNo">Car Number</label>
         <input type="text" class="form-control" id="carNo" name = "carNo" placeholder="Car Number" value= "{{userprofile.carNo}}">
       </div>
 
-      <div class="form-group">
-        <label for="emergencyNo">Emergency Contact Number</label>
+      <div class=" field">
+        <label for="emergencyNo">Emergency Contact Number.</label>
         <input type="text" class="form-control" id="EmergencyNo" name="EmergencyNo" placeholder="Emergency Number" value= "{{userprofile.personalNumbers}}">
       </div>
+     
 
-
-      <div class="form-group">
-        <button id="updateform" class="button u-full-width">Update</button>
+      <div class="">
+        <button id="updateform" class="fluid ui primary green basic button">Update</button>
       </div>
 
     </form>
     {{/if}}
-  </div>
 </div>
 
 

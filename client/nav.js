@@ -116,22 +116,11 @@ $(document).ready(function() {
 });
 
 Template.semanticnav.onRendered(function(){
-console.log("afqfdqefd");
-// $('.context.example .ui.sidebar')
-//   .sidebar({
-//     context: $('.context.example .bottom.segment')
-//   })
-//   .sidebar('attach events', '.context.example .menu .item')
-// ;
+// console.log("afqfdqefd");
+$('#app .ui.sidebar')
+  .sidebar({ context: $('#app') }).sidebar('setting', 'transition', 'overlay');
 
-$('.ui.sidebar').sidebar({
-  transition: 'overlay',
-
-});
-
-// $(".item").sidebar('toggle');
-
-$( ".item" ).click(function() {
+$( ".menu1" ).click(function() {
   $('.ui.sidebar')
   .sidebar('toggle')
 ;
