@@ -123,10 +123,10 @@ $('.context.example .ui.sidebar')
   })
   .sidebar('attach events', '.context.example .menu .item')
 ;
-$('.sidebar icon').first()
-  .sidebar('attach events', '.toggle.button')
+
+$( ".item" ).click(function() {
+  $('.ui.sidebar')
+  .sidebar('toggle')
 ;
-$('.toggle.button')
-  .removeClass('disabled')
-;
+});
 });
