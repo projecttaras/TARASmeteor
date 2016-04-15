@@ -1,5 +1,13 @@
 <template name="main">
+<<<<<<< HEAD
 	{{> semanticnav }}
+=======
+	{{> navigation }}
+  <div class="container-fluid">
+  {{> bootstrapAlerts}}
+	{{> yield}}
+  </div>
+>>>>>>> 2451d661714a54e663e02563dee4fbe838ecc932
 </template>
 
 <template name="uploadjson">
@@ -42,7 +50,7 @@
           {{#if isInRole 'Hospital'}}
             <li><a href="{{pathFor route='portal'}}">Portal</a></li>
           {{/if}}
-          {{#if isInRole 'PoliceStation'}}
+          {{#if isInRole 'Police'}}
             <li><a href="{{pathFor route='portal'}}">Portal</a></li>
           {{/if}}
           {{#if isInRole 'Normal'}}
