@@ -84,7 +84,12 @@
                 <td>{{ getAccident.date }}</td>
                 <td>{{ getUser}}</td>  
                 <td class="accidentlocation">{{ getAccident.location }}</td>
-                <td>{{#if checkstatus}}Accepted{{else}}Pending...{{/if}}</td>
+                <td>{{#if checkstatus}}<button class="ui green basic button">
+                Accepted
+              </button>
+              {{else}}<button class="ui red basic button">
+                Pending...
+              </button>{{/if}}</td>
                 <td>{{ getHospital.address }}</td>
                 
             </tr>
