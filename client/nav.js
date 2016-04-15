@@ -117,12 +117,19 @@ $(document).ready(function() {
 
 Template.semanticnav.onRendered(function(){
 console.log("afqfdqefd");
-$('.context.example .ui.sidebar')
-  .sidebar({
-    context: $('.context.example .bottom.segment')
-  })
-  .sidebar('attach events', '.context.example .menu .item')
-;
+// $('.context.example .ui.sidebar')
+//   .sidebar({
+//     context: $('.context.example .bottom.segment')
+//   })
+//   .sidebar('attach events', '.context.example .menu .item')
+// ;
+
+$('.ui.sidebar').sidebar({
+  transition: 'overlay',
+
+});
+
+// $(".item").sidebar('toggle');
 
 $( ".item" ).click(function() {
   $('.ui.sidebar')

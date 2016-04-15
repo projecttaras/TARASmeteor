@@ -1,6 +1,7 @@
 <template name="main">
-	{{> semanticnav }}
+	{{> navigation }}
   <div class="container-fluid">
+  {{>yield}}
   {{> bootstrapAlerts}}
 	
   </div>
@@ -103,10 +104,14 @@
   </a>
 </div>
 <div class="ui bottom attached segment pushable">
-  <div class="ui inverted labeled icon left inline vertical sidebar menu">
-    <a class="item">
+  <div class="ui red labeled icon left inline vertical sidebar menu">
+    <a class="item" href="/">
       <i class="home icon"></i>
       Home
+    </a>
+    <a class="item" href="/map">
+      <i class="home icon"></i>
+      Map
     </a>
     <a class="item">
       <i class="block layout icon"></i>
@@ -125,6 +130,7 @@
     {{>yield}}
   </div>
 </div>
+
 </template>
 
 <template name="navigation1">

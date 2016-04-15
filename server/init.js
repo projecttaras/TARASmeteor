@@ -49,7 +49,9 @@ Meteor.startup(function () {
         'password': password,
         'roles': roles,
         'userinfo':userinfo,
-    },console.log("Done"));
+    },function(){
+      console.log("done");
+    });
     },
     getaddress: function(lat,longt){
       this.unblock();
@@ -76,6 +78,27 @@ Meteor.startup(function () {
         }
       });
     },
+    addUserProfile: function(UserId, name, mobileNo, personalNumbers, carNo){
+      u = UserProfile.insert({
+        'UserId' : UserId,
+        'name' : name,
+        'mobileNo': mobileNo,
+        'personalNumbers' : personalNumbers,
+        'carNo': carNo,
+      });
+    },
+    updateUserProfile: function(UserId, name, mobileNo, personalNumbers, carNo){
+      u = UserProfile.update({'UserId' : UserId}, { $set: {
+        'name' : name,
+        'mobileNo': mobileNo,
+        'personalNumbers' : personalNumbers,
+        'carNo': carNo,
+      }
+    });
+
+
+
+    },
     addNormalUser: function(emailaddress,password)
     {
       roles=[];
@@ -88,6 +111,10 @@ Meteor.startup(function () {
             'roles': roles,
             'setProfile': setProfile,
         });
+   
+        return userId;
+    
+
     },
     getProfileStatus: function(userId){
       user=Meteor.users.findOne({_id:userId});
@@ -97,6 +124,7 @@ Meteor.startup(function () {
       else
         return false;
     },
+    
     sendSMS: function(number,message)
     {
       url="https://control.msg91.com/api/sendhttp.php?authkey=105176A5azKn6Yin056c344f3&mobiles=+"+number+"&message="+message+"&sender=131313&route=1&country=91";
