@@ -1,41 +1,37 @@
 <template name="adduser">
-	<div class="container">
+	<div class="ui container">
 	{{#if isInRole 'admin' }}
-			<div class="form-group">
+			<div class="field">
     			<label for="emailaddress">Email address</label>
     			<input type="email" class="form-control" id="emailaddress" placeholder="Email">
   			</div>
-  			<div class="form-group">
+  			<div class="field">
     			<label for="Password">Password</label>
     			<input type="password" class="form-control" id="Password" placeholder="Password">
   			</div>
-  			<div class="form-group">
+  			<div class="field">
     			<label for="ConfirmPassword">Confirm Password</label>
     			<input type="password" class="form-control" id="ConfirmPassword" placeholder="Password">
   			</div>
-  			<div class="radio">
-			  <label>
-			    <input type="radio" name="optionsRadios" id="Hospital" value="Hospital" checked>
-			    Hospital Member
-			  </label>
+  			<div class="ui form">
+			  <div class="field">
+			    <label>Member</label>
+			    <select class="ui dropdown" id="member">
+			      <option value="hospital">Hospital Member</option>
+			      <option value="police">Police Member</option>
+			    </select>
+			  </div>
 			</div>
-			<div class="radio">
-			  <label>
-			    <input type="radio" name="optionsRadios" id="PoliceStation" value="PoliceStation">
-			   	Police Station Member
-			  </label>
-			</div>
-			<div class="form-group">
+			<div class="field">
 				<label for="address">Address</label>
 				<textarea class="form-control" rows="3" id="address"></textarea>
 			</div>
-			<div class="form-group">
+			<div class="field">
     			<label for="latlongt">Lat Long</label>
     			<input type="text" class="form-control" id="latlongt" placeholder="Lat,Long">
   			</div>
-  			<div class="form-group">
-      			<button id="submitform" class="btn btn-default col-xs-12">Add User</button>
-			</div>
+  			<br>
+      		<button id="submitform" class="fluid ui green basic button">Add User</button>
 		<br>
 		<br>
 		<br>

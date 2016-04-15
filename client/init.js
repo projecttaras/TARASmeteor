@@ -291,19 +291,30 @@ Template.home.helpers({
 
 
 //Add user template
+Template.adduser.onRendered(function(){
+  $('.ui.radio.checkbox').checkbox();
+});
+
 Template.adduser.events({
   'click #submitform'(event) {
     event.preventDefault();
     var emailaddress=$('#emailaddress').val();
     var password=$('#Password').val();
     var confirmpassword=$('#ConfirmPassword').val();
-    var hospitalmember=$('#Hospital').is(':checked');
-    var policemember=$('#PoliceStation').is(':checked');
+    var hospitalmember=false;
+    var policemember=false;
+    var member=$('#member').val();
     var roles=[];
-    if(hospitalmember)
+    if(member == 'hospital')
+    {
       roles.push("Hospital");
+      hospitalmember=true;
+    }
     else if(policemember)
+    {
       roles.push("Police");
+      policemember=true;
+    }
     var address=$('#address').val();
     var latlong=$('#latlongt').val();
     var latlongarr=latlong.trim().split(",");
