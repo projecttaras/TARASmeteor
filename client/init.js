@@ -349,7 +349,7 @@ Template.login.events({
       }
       else
       {
-        Router.go('home');
+        Router.go('map');
       }
     });
   },
