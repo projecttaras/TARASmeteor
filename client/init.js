@@ -1,5 +1,5 @@
 WebFontConfig = {
-      google: { families: [ 'Bitter:700,400:latin', '   Indie Flower', 'Fira Mono','Raleway' ] }
+      google: { families: [ 'Roboto:300' ] }
     };
     (function() {
       var wf = document.createElement('script');
