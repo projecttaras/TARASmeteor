@@ -34,4 +34,6 @@ mdg:geolocation
 mrt:bootstrap-alerts
 check
 momentjs:moment
-johnantoni:meteor-skeleton
+semantic:ui
+flemay:less-autoprefixer
+semantic:ui-css

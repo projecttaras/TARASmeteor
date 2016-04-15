@@ -1,7 +1,7 @@
 <template name="portal">
 <div class="container">
-{{#if isInRole 'Hospital' 'Police'}}
-<h3>{{#if isInRole 'Hospital'}}Hospital{{else}}Police{{/if}} PORTAL </h3>
+{{#if isInRole 'Hospital' 'PoliceStation'}}
+<h3>{{#if isInRole 'Hospital'}}Hospital{{else}}PoliceStation{{/if}} PORTAL </h3>
 {{#if isInRole 'Hospital'}}
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#accidents">Accidents</a></li>
@@ -27,7 +27,7 @@
                 <td>{{ getUser}}</td>  
                 <td class="accidentlocation">{{ getAccident.location }}</td>
                 <td>{{ getPoliceStation.address }}</td>
-                <td><button id="accept" type="button" class="btn btn-success {{#if checkstatus}}disabled{{/if}}">{{#if checkstatus}}Accepted{{else}}Accept{{/if}}</button></td>
+                <td><button id="accept" type="button" class="ui red basic button {{#if checkstatus}}disabled{{/if}}">{{#if checkstatus}}Accepted{{else}}Accept{{/if}}</button></td>
             </tr>
           {{/each}}
         </tbody>

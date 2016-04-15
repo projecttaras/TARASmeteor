@@ -114,3 +114,19 @@ $(document).ready(function() {
 
 
 });
+
+Template.semanticnav.onRendered(function(){
+console.log("afqfdqefd");
+$('.context.example .ui.sidebar')
+  .sidebar({
+    context: $('.context.example .bottom.segment')
+  })
+  .sidebar('attach events', '.context.example .menu .item')
+;
+$('.sidebar icon').first()
+  .sidebar('attach events', '.toggle.button')
+;
+$('.toggle.button')
+  .removeClass('disabled')
+;
+});
