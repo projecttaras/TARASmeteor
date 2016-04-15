@@ -1,8 +1,8 @@
 <template name="main">
-	{{> semanticnav }}
+	{{> navigation }}
   <div class="container-fluid">
   {{> bootstrapAlerts}}
-	<!-- {{> yield}} -->
+	{{> yield}}
   </div>
 </template>
 
@@ -46,7 +46,7 @@
           {{#if isInRole 'Hospital'}}
             <li><a href="{{pathFor route='portal'}}">Portal</a></li>
           {{/if}}
-          {{#if isInRole 'PoliceStation'}}
+          {{#if isInRole 'Police'}}
             <li><a href="{{pathFor route='portal'}}">Portal</a></li>
           {{/if}}
           {{#if isInRole 'Normal'}}
@@ -103,7 +103,7 @@
   </a>
   {{#if currentUser}}
         {{#if isInRole 'admin' }}
-        <div class="right menu">
+        <!-- <div class="right menu">
           <a class="ui dropdown item">
           Admin Menu
           <i class="dropdown icon"></i>
@@ -113,8 +113,8 @@
             <div class="item"><a href="{{pathFor route='adduser'}}">Add User</a></div>
           </div>
         </a>
-        </div>
-        <!-- <a class="ui dropdown item">
+        </div> -->
+        <a class="ui dropdown item">
       Admin Menu
       <i class="dropdown icon"></i>
       <div class="menu">
@@ -122,7 +122,7 @@
         <div class="item"><a href="{{pathFor route='upload'}}">Upload JSON</a></div>
         <div class="item"><a href="{{pathFor route='adduser'}}">Add User</a></div>
       </div>
-    </a> -->
+    </a>
     {{else}}
           {{#if isInRole 'Hospital'}}
             <a class="item" href="{{pathFor route='portal'}}">
@@ -143,32 +143,6 @@
           <a class="item" href="{{pathFor route='login'}}">Login</a>
           <a class="item" href="{{pathFor route='register'}}">Register</a>
       {{/if}} 
-</div>
-<div class="ui bottom attached segment pushable">
-  <div class="ui inverted labeled icon left inline vertical sidebar menu">
-    <a class="item" href="{{pathFor route='home'}}">
-      <i class="home icon"></i>
-      Home
-    </a>
-    <a class="item" href="{{pathFor route='map'}}">
-      <i class="block layout icon"></i>
-      Map
-    </a>
-    <a class="item">
-      <i class="smile icon"></i>
-      Friends
-    </a>
-    <a class="item">
-      <i class="calendar icon"></i>
-      History
-    </a>
-  </div>
-  <div class="pusher">
-    <body>
-      {{>yield}}  
-    </body>
-    
-  </div>
 </div>
 </template>
 

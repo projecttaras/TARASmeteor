@@ -412,6 +412,9 @@ Template.portal.helpers({
     else
       return true;
   },
+  allaccidents: function() {
+       return AccidentMap.find({});
+  },
   getUser: function(){
     // var username="";
     // Meteor.call("getUser",UserId,function(err,data){
