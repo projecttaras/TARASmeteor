@@ -310,7 +310,7 @@ Template.adduser.events({
       roles.push("Hospital");
       hospitalmember=true;
     }
-    else if(policemember)
+    else if(policemember == false)
     {
       roles.push("Police");
       policemember=true;
