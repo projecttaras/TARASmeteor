@@ -434,8 +434,8 @@ Template.homepage.helpers({
 //Portal code
 
 Template.portal.onRendered(function(){
-  this.subscribe('getUsers');
   $('.tabular.menu .item').tab();
+  this.subscribe('getUsers');
 });
 
 Template.portal.helpers({
