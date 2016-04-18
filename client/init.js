@@ -431,6 +431,12 @@ Template.homepage.helpers({
   },
 });
 
+//Portal code
+
+Template.portal.onRendered(function(){
+  this.subscribe('getUsers');
+  $('.tabular.menu .item').tab();
+});
 
 Template.portal.helpers({
   accidents: function() {
