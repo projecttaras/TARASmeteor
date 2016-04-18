@@ -56,7 +56,9 @@ Meteor.startup(function () {
       this.unblock();
       var url="http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+longt;
       console.log("Url to call....:"+url);
-      return Meteor.http.call("GET",url);
+      result=Meteor.http.call("GET",url);
+      console.log(result);
+      return result;
     },
     removeOtherHospitals: function(MapId,HospitalId,AccidentId)
     {
