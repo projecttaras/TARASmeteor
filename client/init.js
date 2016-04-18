@@ -321,7 +321,7 @@ Template.adduser.events({
     var userinfo={'address':address,'latlongarr':latlongarr,'hospitalmember':hospitalmember,'policemember': policemember};
     console.log("========Values from form===============");
     console.log(emailaddress+"|"+password+"|"+hospitalmember+"|"+address);
-    Meteor.call('addnewuser',emailaddress,password,roles,userinfo,function(result,err){
+    Meteor.call('addnewuser',emailaddress,password,roles,userinfo,function(err,result){
       if(err)
       {
         Alerts.add(err);

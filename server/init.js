@@ -49,9 +49,8 @@ Meteor.startup(function () {
         'password': password,
         'roles': roles,
         'userinfo':userinfo,
-    },function(){
-      console.log("done");
-    });
+      });
+      return user;
     },
     getaddress: function(lat,longt){
       this.unblock();
