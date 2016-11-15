@@ -7,6 +7,20 @@ App.info({
   website: 'http://projecttaras.github.io'
 });
 
+App.icons({
+  'android_mdpi': 'icons/logo.png',
+  'android_hdpi': 'icons/logo.png',
+  'android_xhdpi': 'icons/logo.png',
+  'android_xxhdpi': 'icons/logo.png',
+  'android_xxxhdpi': 'icons/logo.png',
+});
+
+App.launchScreens({
+  'android_mdpi_portrait': 'icons/tarassplash.png',
+  'android_hdpi_portrait': 'icons/tarassplash.png',
+  'android_xhdpi_portrait': 'icons/tarassplash.png',
+  'android_xxhdpi_portrait': 'icons/tarassplash.png',
+});
 
 // Set PhoneGap/Cordova preferences
 App.setPreference('BackgroundColor', '0xff0000ff');

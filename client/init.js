@@ -30,6 +30,7 @@ WebFontConfig = {
 
 //Map helper functions
 Template.map.onRendered(function(){
+  Meteor.subscribe('getAccidents');
   $('.context.example .ui.sidebar')
   .sidebar({
     context: $('.context.example .bottom.segment')
@@ -44,6 +45,7 @@ $( ".menu1" ).click(function() {
 });
 
   GoogleMaps.load({
+    key: 'AIzaSyAdO05cxef-_WzAvrEZ9TYuUlSOIjdXmw8',
     libraries: 'visualization'
   });
 });
