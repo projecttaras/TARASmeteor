@@ -5,7 +5,7 @@ Accounts.config({
 
 
 
-  
+
 
 Meteor.startup(function () {
   // $.getScript('https://maps.googleapis.com/maps/api/js', function(){});
@@ -37,7 +37,7 @@ Meteor.startup(function () {
         }
       }).run();
       // console.log(obj);
-	    return null; 
+	    return null;
 	}
   });
 
@@ -92,7 +92,19 @@ Meteor.startup(function () {
         // 'carNo': carNo,
       });
     },
-    updateUserProfile: function(UserId, name, mobileNo, personalNumbers){
+
+    addDevice: function(UserId,name,deviceID,manID)
+    {
+      console.log(manID);
+      u = UserDevice.insert({
+        'UserId': UserId,
+        'ManId': manID,
+        'name' : name,
+        'deviceID': deviceID,
+
+      });
+    },
+    updateUserProfile: function(UserId, name, mobileNo, personalNumbers, carNo){
       u = UserProfile.update({'UserId' : UserId}, { $set: {
         'name' : name,
         'mobileNo': mobileNo,
@@ -116,9 +128,9 @@ Meteor.startup(function () {
             'roles': roles,
             'setProfile': setProfile,
         });
-   
+
         return userId;
-    
+
 
     },
     getProfileStatus: function(userId){
@@ -129,7 +141,7 @@ Meteor.startup(function () {
       else
         return false;
     },
-    
+
     sendSMS: function(number,message)
     {
       url="https://control.msg91.com/api/sendhttp.php?authkey=105176A5azKn6Yin056c344f3&mobiles=+"+number+"&message="+message+"&sender=131313&route=1&country=91";
@@ -147,14 +159,14 @@ Meteor.startup(function () {
     // }
 
      // Variables
-  
+
 
   })
 
 
 
-  
-  
+
+
 
 });
 

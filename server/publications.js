@@ -38,4 +38,18 @@ Meteor.publish("userProfile",function(){
 		console.log("Empty user profile list");
 		return;
 	}
-})
+});
+
+Meteor.publish("userDevice",function(){
+	userdevice=UserDevice.find({UserId: this.userId});
+	if(userdevice.count())
+		return userdevice;
+	else{
+		console.log("Empty user device list");
+		return;
+	}
+});
+
+Meteor.publish("manufacturers",function(){
+ return Manufacturer.find({});
+});
