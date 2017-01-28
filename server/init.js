@@ -79,21 +79,25 @@ Meteor.startup(function () {
         }
       });
     },
-    addUserProfile: function(UserId, name, mobileNo, personalNumbers, carNo){
+    addUserProfile: function(UserId, name, mobileNo, personalNumbers, bloodGroup, allergies, height, weight){
       u = UserProfile.insert({
         'UserId' : UserId,
         'name' : name,
         'mobileNo': mobileNo,
         'personalNumbers' : personalNumbers,
-        'carNo': carNo,
+        'bloodGroup' : bloodGroup,
+        'allergies' :allergies,
+        'height' : height, 
+        'weight' : weight,
+        // 'carNo': carNo,
       });
     },
-    updateUserProfile: function(UserId, name, mobileNo, personalNumbers, carNo){
+    updateUserProfile: function(UserId, name, mobileNo, personalNumbers){
       u = UserProfile.update({'UserId' : UserId}, { $set: {
         'name' : name,
         'mobileNo': mobileNo,
         'personalNumbers' : personalNumbers,
-        'carNo': carNo,
+        // 'carNo': carNo,
       }
     });
 

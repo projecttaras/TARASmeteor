@@ -16,12 +16,31 @@
       </div>
     
 
-     
-      <div class=" field">
-        <label for="carNo">Car Number</label>
-        <input type="text" class="form-control" id="carNo" name = "carNo" placeholder="Car Number" value= "{{userprofile.carNo}}">
+     <div class="field">
+          <label for="allergies">Allergies</label>
+          <input type="text" class="form-control" id="allergies" placeholder="allergies" value= "{{userprofile.allergies}}">
       </div>
-
+      <div class="field">
+          <label for="height">Height</label>
+          <input type="text" class="form-control" id="height" placeholder="Height" value= "{{userprofile.height}}">
+      </div>
+      <div class="field">
+          <label for="weight">Weight</label>
+          <input type="text" class="form-control" id="weight" placeholder="Weight" value= "{{userprofile.weight}}">
+      </div>
+      <!-- <div class="field">
+          <label for="carNo">Car Number</label>
+          <input type="text" class="form-control" id="carNo" placeholder="Car Registration Number">
+      </div> -->
+    <div class="field">
+        <label for="bloodGroup">Blood Group</label>
+        <select name="cars" class="form-control" id="bloodGroup">
+          <option value="A+">A+</option>
+          <option value="B+">B+</option>
+          <option value="AB+">AB+</option>
+          <option value="O+">O+</option>
+        </select >
+    </div>
       <div class=" field">
         <label for="emergencyNo">Emergency Contact Number.</label>
         <input type="text" class="form-control" id="EmergencyNo" name="EmergencyNo" placeholder="Emergency Number" value= "{{userprofile.personalNumbers}}">

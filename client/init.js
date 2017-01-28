@@ -368,6 +368,19 @@ Template.login.events({
   },
 });
 
+
+// Template.register.helpers({
+//   bloodGroupOptions: function () {
+//     return [
+//         {label: "2013", value: 2013},
+//         {label: "2014", value: 2014},
+//         {label: "2015", value: 2015}
+//     ];
+//   },
+// });
+
+
+
 Template.register.events({
   'click #submitform'(event) {
     event.preventDefault();
@@ -377,11 +390,15 @@ Template.register.events({
     var name = $('#name').val();
     var phoneNumber = $('#phoneNumber').val().toString();
     var EmergencyNo = $('#EmergencyNo').val().toString();
-    var carNo = $('#carNo').val();
+    var bloodGroup = $('#bloodGroup').val();
+    var allergies = $('#allergies').val();
+    var height = $('#height').val();
+    var weight = $('#weight').val();
+    // var carNo = $('#carNo').val();
     var phoneNumbers = []
     phoneNumbers.push(EmergencyNo);
 
-    console.log(""+name+phoneNumber+EmergencyNo+carNo);
+    console.log(""+name+phoneNumber+EmergencyNo);
 
     Meteor.call('addNormalUser',emailaddress,password,function(error,result)
     {
@@ -392,7 +409,7 @@ Template.register.events({
         Alerts.add("Successfully created User","success");
         console.log(""+result)
 
-        Meteor.call('addUserProfile',result,name,phoneNumber,phoneNumbers, carNo, function(error,result)
+        Meteor.call('addUserProfile',result,name,phoneNumber,phoneNumbers, bloodGroup, allergies, height, weight,  function(error,result)
             {
               if(error)
                 Alerts.add(error);
@@ -514,3 +531,5 @@ Template.portalmap.helpers({
     return Session.get('longt');
   },
 });
+
+

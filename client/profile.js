@@ -43,12 +43,12 @@ Template.profile.events({
 		event.preventDefault();
 		var name = event.target.form.name.value;
 		var phoneNumber = event.target.form.phoneNumber.value;
-		var carNo = event.target.form.carNo.value;
+		// var carNo = event.target.form.carNo.value;
 		var EmergencyNo = event.target.form.EmergencyNo.value;
 		var phoneNumbers = []
     	phoneNumbers.push(EmergencyNo);
 
-		Meteor.call('updateUserProfile',Meteor.userId(),name,phoneNumber,phoneNumbers, carNo, function(error,result)
+		Meteor.call('updateUserProfile',Meteor.userId(),name,phoneNumber,phoneNumbers, function(error,result)
             {
               if(error)
                 Alerts.add(error);
