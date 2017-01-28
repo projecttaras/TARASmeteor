@@ -38,3 +38,4 @@ flemay:less-autoprefixer
 semantic:ui-css
 standard-minifier-css
 standard-minifier-js
+iron:middleware-stack@1.1.0
