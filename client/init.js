@@ -100,7 +100,7 @@ Template.map.helpers({
         zoomControl: true,
         scaleControl: true,
         styles:[{"featureType":"water","elementType":"all","stylers":[{"hue":"#7fc8ed"},{"saturation":55},{"lightness":-6},{"visibility":"on"}]},{"featureType":"water","elementType":"labels","stylers":[{"hue":"#7fc8ed"},{"saturation":55},{"lightness":-6},{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"hue":"#83cead"},{"saturation":1},{"lightness":-15},{"visibility":"on"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"hue":"#f3f4f4"},{"saturation":-84},{"lightness":59},{"visibility":"on"}]},{"featureType":"landscape","elementType":"labels","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"on"}]},{"featureType":"road","elementType":"labels","stylers":[{"hue":"#bbbbbb"},{"saturation":-100},{"lightness":26},{"visibility":"on"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"hue":"#ffcc00"},{"saturation":100},{"lightness":-35},{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"hue":"#ffcc00"},{"saturation":100},{"lightness":-22},{"visibility":"on"}]},{"featureType":"poi.school","elementType":"all","stylers":[{"hue":"#d7e4e4"},{"saturation":-60},{"lightness":23},{"visibility":"on"}]}],
-        // mapTypeId: google.maps.MapTypeId.SATELLITE,      
+        // mapTypeId: google.maps.MapTypeId.SATELLITE,
       };
     }
   }
@@ -151,17 +151,17 @@ function deg2rad(angle) {
   return angle * .017453292519943295;
 }
 
-function getDistance( latitude1, longitude1, latitude2, longitude2 ) {  
+function getDistance( latitude1, longitude1, latitude2, longitude2 ) {
     var earth_radius = 6371;
 
-    var dLat = deg2rad(latitude2 - latitude1 );  
-    var dLon = deg2rad(longitude2 - longitude1 );  
+    var dLat = deg2rad(latitude2 - latitude1 );
+    var dLon = deg2rad(longitude2 - longitude1 );
 
-    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(latitude1)) * Math.cos(deg2rad(latitude2)) * Math.sin(dLon/2) * Math.sin(dLon/2);  
-    var c = 2 * Math.asin(Math.sqrt(a));  
-    var d = earth_radius * c;  
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(latitude1)) * Math.cos(deg2rad(latitude2)) * Math.sin(dLon/2) * Math.sin(dLon/2);
+    var c = 2 * Math.asin(Math.sqrt(a));
+    var d = earth_radius * c;
 
-    return d;  
+    return d;
 }
 
 
@@ -193,7 +193,7 @@ function startSimulation(map,accidents){
   var latLng = Geolocation.latLng();
   var currentLocationMarker = setMarker(new google.maps.LatLng(latLng.lat, latLng.lng), "Your location", map.instance, true);
   google.maps.event.addListener(currentLocationMarker, 'drag', function(e) { get_number_of_accidents_in_radius(e, accidents); } );
-    
+
 }
 
 function displayInfo(circle){
@@ -221,7 +221,7 @@ Template.map.onCreated(function() {
     //   get_number_of_accidents_in_radius(e, accidents);
     // });
 
-       
+
 
     var accident_lat_lon_list = [];
 
@@ -230,7 +230,7 @@ Template.map.onCreated(function() {
       // setMarker(new google.maps.LatLng(obj.lat, obj.longt), obj.location, map.instance);
       // console.log(obj.deaths);
       // accident_lat_lon_list.push(new google.maps.LatLng(obj.lat, obj.longt));
-      for (i = 0; i < obj.deaths+obj.injuries+1 ; i++) { 
+      for (i = 0; i < obj.deaths+obj.injuries+1 ; i++) {
           accident_lat_lon_list.push(new google.maps.LatLng(obj.lat, obj.longt));
       }
     })
@@ -258,17 +258,17 @@ Template.map.onCreated(function() {
 
     console.log("event listeners");
     // eventlisteners
-    google.maps.event.addListener(Circle, 'center_changed', function()   
+    google.maps.event.addListener(Circle, 'center_changed', function()
     {
-        console.log('Circle moved');  
-        displayInfo(Circle);  
-    });  
+        console.log('Circle moved');
+        displayInfo(Circle);
+    });
 
-    google.maps.event.addListener(Circle, 'radius_changed', function()   
-    {  
-        console.log('dictance changed');  
-        displayInfo(Circle);  
-    }); 
+    google.maps.event.addListener(Circle, 'radius_changed', function()
+    {
+        console.log('dictance changed');
+        displayInfo(Circle);
+    });
 
   });
 });
@@ -279,7 +279,7 @@ Template.map.events({
       event.preventDefault();
       accidents = Accidents.find({});
       console.log("HEY");
-      startSimulation(GoogleMaps.maps.map, accidents); 
+      startSimulation(GoogleMaps.maps.map, accidents);
   }
 });
 
@@ -368,6 +368,19 @@ Template.login.events({
   },
 });
 
+
+// Template.register.helpers({
+//   bloodGroupOptions: function () {
+//     return [
+//         {label: "2013", value: 2013},
+//         {label: "2014", value: 2014},
+//         {label: "2015", value: 2015}
+//     ];
+//   },
+// });
+
+
+
 Template.register.events({
   'click #submitform'(event) {
     event.preventDefault();
@@ -377,11 +390,15 @@ Template.register.events({
     var name = $('#name').val();
     var phoneNumber = $('#phoneNumber').val().toString();
     var EmergencyNo = $('#EmergencyNo').val().toString();
-    var carNo = $('#carNo').val();
+    var bloodGroup = $('#bloodGroup').val();
+    var allergies = $('#allergies').val();
+    var height = $('#height').val();
+    var weight = $('#weight').val();
+    // var carNo = $('#carNo').val();
     var phoneNumbers = []
     phoneNumbers.push(EmergencyNo);
 
-    console.log(""+name+phoneNumber+EmergencyNo+carNo);
+    console.log(""+name+phoneNumber+EmergencyNo);
 
     Meteor.call('addNormalUser',emailaddress,password,function(error,result)
     {
@@ -392,7 +409,7 @@ Template.register.events({
         Alerts.add("Successfully created User","success");
         console.log(""+result)
 
-        Meteor.call('addUserProfile',result,name,phoneNumber,phoneNumbers, carNo, function(error,result)
+        Meteor.call('addUserProfile',result,name,phoneNumber,phoneNumbers, bloodGroup, allergies, height, weight,  function(error,result)
             {
               if(error)
                 Alerts.add(error);
@@ -404,7 +421,7 @@ Template.register.events({
             });
       }
     });
-  
+
 
 
 
@@ -473,6 +490,12 @@ Template.portal.helpers({
       return user.username
     else
       return "Not found";
+  },
+  getUserProfile: function(){
+    console.log("user id "+ this.UserId);
+    up = UserProfile.findOne({UserId:this.UserId});
+    console.log(up);
+    return up;
   }
 });
 
@@ -498,6 +521,11 @@ Template.portal.events({
     Session.set('portalMapAllow',true);
     Session.set('lat',this.getAccident().lat);
     Session.set('longt',this.getAccident().longt);
+  },
+  'click #userid'(event){
+    event.preventDefault();
+    console.log(this.UserId);
+    $('#'+this.UserId).modal('show');
   }
 });
 
@@ -514,3 +542,5 @@ Template.portalmap.helpers({
     return Session.get('longt');
   },
 });
+
+

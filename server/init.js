@@ -5,7 +5,7 @@ Accounts.config({
 
 
 
-  
+
 
 Meteor.startup(function () {
   // $.getScript('https://maps.googleapis.com/maps/api/js', function(){});
@@ -37,7 +37,7 @@ Meteor.startup(function () {
         }
       }).run();
       // console.log(obj);
-	    return null; 
+	    return null;
 	}
   });
 
@@ -79,13 +79,29 @@ Meteor.startup(function () {
         }
       });
     },
-    addUserProfile: function(UserId, name, mobileNo, personalNumbers, carNo){
+    addUserProfile: function(UserId, name, mobileNo, personalNumbers, bloodGroup, allergies, height, weight){
       u = UserProfile.insert({
         'UserId' : UserId,
         'name' : name,
         'mobileNo': mobileNo,
         'personalNumbers' : personalNumbers,
-        'carNo': carNo,
+        'bloodGroup' : bloodGroup,
+        'allergies' :allergies,
+        'height' : height, 
+        'weight' : weight,
+        // 'carNo': carNo,
+      });
+    },
+
+    addDevice: function(UserId,name,deviceID,manID)
+    {
+      console.log(manID);
+      u = UserDevice.insert({
+        'UserId': UserId,
+        'ManId': manID,
+        'name' : name,
+        'deviceID': deviceID,
+
       });
     },
     updateUserProfile: function(UserId, name, mobileNo, personalNumbers, carNo){
@@ -93,7 +109,7 @@ Meteor.startup(function () {
         'name' : name,
         'mobileNo': mobileNo,
         'personalNumbers' : personalNumbers,
-        'carNo': carNo,
+        // 'carNo': carNo,
       }
     });
 
@@ -112,9 +128,9 @@ Meteor.startup(function () {
             'roles': roles,
             'setProfile': setProfile,
         });
-   
+
         return userId;
-    
+
 
     },
     getProfileStatus: function(userId){
@@ -125,7 +141,7 @@ Meteor.startup(function () {
       else
         return false;
     },
-    
+
     sendSMS: function(number,message)
     {
       url="https://control.msg91.com/api/sendhttp.php?authkey=105176A5azKn6Yin056c344f3&mobiles=+"+number+"&message="+message+"&sender=131313&route=1&country=91";
@@ -143,14 +159,14 @@ Meteor.startup(function () {
     // }
 
      // Variables
-  
+
 
   })
 
 
 
-  
-  
+
+
 
 });
 

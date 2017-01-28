@@ -1,0 +1,59 @@
+<template name="userDevice">
+  <div class="ui text container">
+
+
+     <h2> Welcome, {{ getUser }}'s Devices </h2>
+     <h3>Registered Devices</h3>
+     {{#if userdevicelist.count}}
+        <table>
+          <thead>
+            <tr>
+              <td>Device Name</td>
+              <td>Manufacturer</td>
+              <td>Device Id</td>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each userdevicelist}}
+              <tr>
+                <td>{{name}}</td>
+                <td>{{getManufacturerName.name}}</td>
+                <td>{{deviceID}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      {{else}}
+        <h3>No Devices Registered</h3>
+      {{/if}}
+     <h3>Add Device</h3>
+     <form class="ui form">
+
+      <div class=" field">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Device Name">
+      </div>
+      <div class=" field" required>
+        <label for="Name">Manufacturer</label>
+        <select id="manu" name="manu" placeholder="Manufacturer Name">
+          {{#each getManufacturer}}
+            <option value="{{_id}}">{{name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class=" field">
+        <label for="Device ID">Device ID</label>
+        <input type="text" class="form-control" id="deviceid" name="deviceid" placeholder="Device Name">
+      </div>
+
+
+      <div class="">
+        <button id="updateform" class="fluid ui primary green basic button">Update</button>
+      </div>
+
+    </form>
+</div>
+
+
+
+</template>

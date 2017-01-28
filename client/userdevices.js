@@ -1,22 +1,24 @@
-Template.profile.onCreated(function(){
+Template.userDevice.onCreated(function(){
   // subscribe to the publication responsible for sending the Pushups
   // documents down to the client
-  this.subscribe("userProfile");
+  this.subscribe("userDevice");
+  this.subscribe("manufacturers");
 });
 
 
-Template.profile.helpers({
-	userprofile: function(){
+Template.userDevice.helpers({
+	userdevicelist: function(){
+    console.log("Hello");
 		my_user_id = Meteor.userId();
 		console.log("me"+ my_user_id);
-		u = UserProfile.findOne({UserId: my_user_id});
+		u = UserDevice.find({UserId: my_user_id});
 		if(!u){
-			console.log("No user profile !");
+			console.log("No user Devices !");
 			return "None";
 		}
 		console.log(u.UserId);
 		return u;
-		
+
 	},
 	getUser: function(){
     // var username="";
@@ -33,32 +35,34 @@ Template.profile.helpers({
       return user.username
     else
       return "Not found";
-  	}
+  	},
+    getManufacturer: function(){
+      console.log("Manufacturer list");
+      m = Manufacturer.find({});
+      return m;
+    }
 
 });
 
 
-Template.profile.events({
+Template.userDevice.events({
 	'click #updateform':  function(event){
 		event.preventDefault();
 		var name = event.target.form.name.value;
-		var phoneNumber = event.target.form.phoneNumber.value;
-		// var carNo = event.target.form.carNo.value;
-		var EmergencyNo = event.target.form.EmergencyNo.value;
-		var phoneNumbers = []
-    	phoneNumbers.push(EmergencyNo);
+		var deviceID = event.target.form.deviceid.value;
+    var manID = event.target.form.manu.value.toString();
 
-		Meteor.call('updateUserProfile',Meteor.userId(),name,phoneNumber,phoneNumbers, function(error,result)
+		Meteor.call('addDevice',Meteor.userId(),name,deviceID,manID,function(error,result)
             {
               if(error)
                 Alerts.add(error);
               else
               {
-                Alerts.add("Successfully update UserProfile","success");
+                Alerts.add("Successfully update UserDevices","success");
                 // Router.go('map');
               }
             });
-		
+
 
 	}
 });
