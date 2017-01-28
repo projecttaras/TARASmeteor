@@ -490,6 +490,12 @@ Template.portal.helpers({
       return user.username
     else
       return "Not found";
+  },
+  getUserProfile: function(){
+    console.log("user id "+ this.UserId);
+    up = UserProfile.findOne({UserId:this.UserId});
+    console.log(up);
+    return up;
   }
 });
 
@@ -515,6 +521,11 @@ Template.portal.events({
     Session.set('portalMapAllow',true);
     Session.set('lat',this.getAccident().lat);
     Session.set('longt',this.getAccident().longt);
+  },
+  'click #userid'(event){
+    event.preventDefault();
+    console.log(this.UserId);
+    $('#'+this.UserId).modal('show');
   }
 });
 

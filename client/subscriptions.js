@@ -7,6 +7,8 @@ if(Roles.userIsInRole(Meteor.userId(),['admin','Hospital','Police']))
 {
 	console.log("Role");
 	Meteor.subscribe('getUsers');
+	Meteor.subscribe('getUserProfiles');
+
 }
 
 if(Roles.userIsInRole(Meteor.userId(),['Normal']))
@@ -14,3 +16,5 @@ if(Roles.userIsInRole(Meteor.userId(),['Normal']))
 	console.log("User logged in.");
 	Meteor.subscribe('userProfile');
 }
+
+

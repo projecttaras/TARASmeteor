@@ -30,6 +30,10 @@ Meteor.publish("getUsers",function(){
 	return Meteor.users.find({});
 });
 
+Meteor.publish("getUserProfiles",function(){
+	return UserProfile.find({});
+});
+
 Meteor.publish("userProfile",function(){
 	userprofile=UserProfile.find({UserId: this.userId});
 	if(userprofile.count())

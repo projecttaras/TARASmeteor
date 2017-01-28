@@ -1,4 +1,23 @@
 <template name="portal">
+
+{{#each accidents}}
+<div class="ui modal" id = "{{this.UserId}}" style="height:50%;">
+  <div class="header">{{getUser}}</div>
+  <div class="content">
+    <p><strong>Name</strong> :{{getUserProfile.name}}</p>
+    <p><strong>height</strong>  :{{getUserProfile.height}}</p>
+    <p><strong>Weight</strong>  :{{getUserProfile.weight}}</p>
+    <p><strong>Allergies</strong>  :{{getUserProfile.allergies}}</p>
+    <p><strong>Emergency Contact</strong>  :{{getUserProfile.personalNumbers}}</p>
+
+  </div>
+  <div class="actions">
+    <div class="ui approve button">Okay</div>
+  </div>
+</div>
+{{/each}}
+
+
 <div class="container">
 {{#if isInRole 'Hospital'}}
 <h3>HOSPITAL PORTAL</h3>
@@ -21,9 +40,9 @@
         </thead>
         <tbody>
           {{#each accidents}}
-              <tr>
+            <tr>
                 <td>{{ getAccident.date }}</td>
-                <td>{{ getUser}}</td>  
+                <td id="userid">{{ getUser}}</td>  
                 <td class="accidentlocation">{{ getAccident.location }}</td>
                 <td>{{ getPoliceStation.address }}</td>
                 <td><button id="accept" type="button" class="ui red basic button {{#if checkstatus}}disabled{{/if}}">{{#if checkstatus}}Accepted{{else}}Accept{{/if}}</button></td>
